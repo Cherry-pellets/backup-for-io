@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://blog.huangjinxiu.top">
   <title>vue2:安装、配置、使用前端路由vue-router | Cherry-pellets的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vue2:安装、配置、使用前端路由vue-router1.查看是否已安装vue-router首先查看package.json文件中是否已经添加了vue-router依赖：再查看node_modules文件夹下是否有vue-router文件夹如果有以上文件，则说明已经安装了vue-router。一般在搭建项目时会出现是否安装vue-router这一个选项：如果选了yes，项目搭建时就会安装vue-r">
+  <meta name="description" content="1.查看是否已安装vue-router首先查看package.json文件中是否已经添加了vue-router依赖：再查看node_modules文件夹下是否有vue-router文件夹如果有以上文件，则说明已经安装了vue-router。一般在搭建项目时会出现是否安装vue-router这一个选项：如果选了yes，项目搭建时就会安装vue-router。如果package.json中没有这句代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue2:安装、配置、使用前端路由vue-router">
 <meta property="og:url" content="http://blog.huangjinxiu.top/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/index.html">
 <meta property="og:site_name" content="Cherry-pellets的博客">
-<meta property="og:description" content="vue2:安装、配置、使用前端路由vue-router1.查看是否已安装vue-router首先查看package.json文件中是否已经添加了vue-router依赖：再查看node_modules文件夹下是否有vue-router文件夹如果有以上文件，则说明已经安装了vue-router。一般在搭建项目时会出现是否安装vue-router这一个选项：如果选了yes，项目搭建时就会安装vue-r">
+<meta property="og:description" content="1.查看是否已安装vue-router首先查看package.json文件中是否已经添加了vue-router依赖：再查看node_modules文件夹下是否有vue-router文件夹如果有以上文件，则说明已经安装了vue-router。一般在搭建项目时会出现是否安装vue-router这一个选项：如果选了yes，项目搭建时就会安装vue-router。如果package.json中没有这句代">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200205183201929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200205183218229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-02-05T10:40:24.000Z">
-<meta property="article:modified_time" content="2020-05-29T09:49:07.525Z">
+<meta property="article:modified_time" content="2020-05-29T09:55:52.737Z">
 <meta property="article:author" content="Cherry-pellets">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="前端">
@@ -196,7 +196,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="vue2-安装、配置、使用前端路由vue-router"><a href="#vue2-安装、配置、使用前端路由vue-router" class="headerlink" title="vue2:安装、配置、使用前端路由vue-router"></a>vue2:安装、配置、使用前端路由vue-router</h1><h4 id="1-查看是否已安装vue-router"><a href="#1-查看是否已安装vue-router" class="headerlink" title="1.查看是否已安装vue-router"></a>1.查看是否已安装vue-router</h4><p>首先查看package.json文件中是否已经添加了vue-router依赖：<br><img src="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再查看node_modules文件夹下是否有vue-router文件夹<br><img src="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果有以上文件，则说明已经安装了vue-router。<br>一般在搭建项目时会出现是否安装vue-router这一个选项：<br><img src="https://img-blog.csdnimg.cn/20200205180054478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果选了yes，项目搭建时就会安装vue-router。<br>如果package.json中没有这句代码或者没有vue-router文件夹，则自己在packsge.json中添加一句代码：</p>
+        <p><a href="vue2:安装、配置、使用前端路由vue-router"></a></p>
+<h4 id="1-查看是否已安装vue-router"><a href="#1-查看是否已安装vue-router" class="headerlink" title="1.查看是否已安装vue-router"></a>1.查看是否已安装vue-router</h4><p>首先查看package.json文件中是否已经添加了vue-router依赖：<br><img src="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再查看node_modules文件夹下是否有vue-router文件夹<br><img src="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果有以上文件，则说明已经安装了vue-router。<br>一般在搭建项目时会出现是否安装vue-router这一个选项：<br><img src="https://img-blog.csdnimg.cn/20200205180054478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果选了yes，项目搭建时就会安装vue-router。<br>如果package.json中没有这句代码或者没有vue-router文件夹，则自己在packsge.json中添加一句代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;vue-router&quot;: &quot;^3.0.1&quot;</span><br></pre></td></tr></table></figure>
 <p>(后面的”^3.0.1”为版本号，可以自己去官网或者github上查看最新稳定版的版本号)，添加完以后执行 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
@@ -300,6 +301,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue:使用vue-resource
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
