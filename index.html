@@ -241,6 +241,81 @@
 
 
   
+    <article id="post-vue2-安装、配置、使用前端路由vue-router" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">vue2:安装、配置、使用前端路由vue-router</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/" class="archive-article-date">
+  	<time datetime="2020-02-05T10:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue2-安装、配置、使用前端路由vue-router"><a href="#vue2-安装、配置、使用前端路由vue-router" class="headerlink" title="vue2:安装、配置、使用前端路由vue-router"></a>vue2:安装、配置、使用前端路由vue-router</h1><h4 id="1-查看是否已安装vue-router"><a href="#1-查看是否已安装vue-router" class="headerlink" title="1.查看是否已安装vue-router"></a>1.查看是否已安装vue-router</h4><p>首先查看package.json文件中是否已经添加了vue-router依赖：<br><img src="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再查看node_modules文件夹下是否有vue-router文件夹<br><img src="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果有以上文件，则说明已经安装了vue-router。<br>一般在搭建项目时会出现是否安装vue-router这一个选项：<br><img src="https://img-blog.csdnimg.cn/20200205180054478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果选了yes，项目搭建时就会安装vue-router。<br>如果package.json中没有这句代码或者没有vue-router文件夹，则自己在packsge.json中添加一句代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;vue-router&quot;: &quot;^3.0.1&quot;</span><br></pre></td></tr></table></figure>
+<p>(后面的”^3.0.1”为版本号，可以自己去官网或者github上查看最新稳定版的版本号)，添加完以后执行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>再去查看node_modules文件夹下是否有vue-router文件夹，如果有，则完成安装。</p>
+<h4 id="2-添加组件"><a href="#2-添加组件" class="headerlink" title="2.添加组件"></a>2.添加组件</h4><p>添加所需的组件<br><img src="https://img-blog.csdnimg.cn/20200205180626552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="3-修改index-js"><a href="#3-修改index-js" class="headerlink" title="3.修改index.js"></a>3.修改index.js</h4><p>首先导入上面创建的组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import goods from &#39;..&#x2F;components&#x2F;goods&#x2F;goods&#39;;</span><br><span class="line">import seller from &#39;..&#x2F;components&#x2F;seller&#x2F;seller&#39;;</span><br><span class="line">import ratings from &#39;..&#x2F;components&#x2F;ratings&#x2F;ratings&#39;;</span><br></pre></td></tr></table></figure>
+<p>然后配置导入的组件作为路由：{第一个{}及其内容不是必需的，只是为了设置一个默认显示的路由}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;goods&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;seller&#39;,</span><br><span class="line">      name: &#39;seller&#39;,</span><br><span class="line">      component: seller</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;ratings&#39;,</span><br><span class="line">      name: &#39;ratings&#39;,</span><br><span class="line">      component: ratings</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如图：<br><img src="https://img-blog.csdnimg.cn/20200205181316966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="4-使用路由"><a href="#4-使用路由" class="headerlink" title="4.使用路由"></a>4.使用路由</h4><p>首先在main.js中引入刚才配置好的路由<br><img src="https://img-blog.csdnimg.cn/20200205182609344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后在app.vue中添加路由，这里的router-link标签中to属性的值要与index.js中path的值对应<br><img src="https://img-blog.csdnimg.cn/20200205182747991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="5-效果"><a href="#5-效果" class="headerlink" title="5.效果"></a>5.效果</h4><p>点击商品：<br><img src="https://img-blog.csdnimg.cn/20200205183201929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击评论<br><img src="https://img-blog.csdnimg.cn/20200205183218229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
