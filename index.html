@@ -166,31 +166,32 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-transition在vue1-0和vue2-0中的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-webpack定义环境变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">transition在vue1.0和vue2.0中的区别</a>
+      <a class="article-title" href="/2020/05/25/webpack%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">webpack定义环境变量</a>
     </h1>
   
 
         
-        <a href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-02-12T13:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
+        <a href="/2020/05/25/webpack%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="archive-article-date">
+  	<time datetime="2020-05-25T07:57:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#transition在vue1.0和vue2.0中的区别"></a></p>
-<h3 id="1-html部分："><a href="#1-html部分：" class="headerlink" title="1. html部分："></a>1. html部分：</h3><h5 id="vue1-0"><a href="#vue1-0" class="headerlink" title="vue1.0"></a>vue1.0</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span> <span class="attr">transition</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="vue2-0"><a href="#vue2-0" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span>&gt;</span></span><br><span class="line">     	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-css部分"><a href="#2-css部分" class="headerlink" title="2. css部分"></a>2. css部分</h3><h4 id="vue1-0-1"><a href="#vue1-0-1" class="headerlink" title="vue1.0"></a>vue1.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span>: <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      &amp;<span class="selector-class">.fold-transition</span></span><br><span class="line">        <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span>, &amp;<span class="selector-class">.fold-leave</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
-<h4 id="vue2-0-1"><a href="#vue2-0-1" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span> <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span> <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      // transition all 0.5s</span><br><span class="line">      <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter-active</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-active</span></span><br><span class="line">        <span class="selector-tag">transition</span> <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        // transform translate3d(0, -100%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-to</span></span><br><span class="line">        <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
+        <h6 id="方法1：直接配置"><a href="#方法1：直接配置" class="headerlink" title="方法1：直接配置"></a>方法1：直接配置</h6><p>（1）在webpack配置文件中使用webpack自带的DefinePlugin插件<br><img src="https://img-blog.csdnimg.cn/20200525152551162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）在其他文件中使用变量<br><img src="https://img-blog.csdnimg.cn/20200525152648951.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）效果：<br><img src="https://img-blog.csdnimg.cn/20200525152659704.png" alt="在这里插入图片描述"></p>
+<h6 id="2-方法2：在不同的环境中定义不同的变量"><a href="#2-方法2：在不同的环境中定义不同的变量" class="headerlink" title="2.方法2：在不同的环境中定义不同的变量"></a>2.方法2：在不同的环境中定义不同的变量</h6><p>(1)<code>npm install webpack-merge</code><br>(2)项目目录下新建webpack.base.js, webpack.prod.js, webpack.dev.js文件<br>其中webpack.prod.js用于生产环境，webpack.dev.js用于开发环境，webpack.base.js同时用于开发环境和生产环境</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.prod.js</span></span><br><span class="line"><span class="keyword">let</span> &#123;smart&#125; = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">let</span> base = <span class="built_in">require</span>(<span class="string">'./webpack.base.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = smart(base, &#123;</span><br><span class="line">    mode: <span class="string">'production'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.dev.js</span></span><br><span class="line"><span class="keyword">let</span> &#123;smart&#125; = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">let</span> base = <span class="built_in">require</span>(<span class="string">'./webpack.base.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = smart(base, &#123;</span><br><span class="line">    mode: <span class="string">'development'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>(3)分别在开发环境和生产环境中打包:<code>npm run build --  --config webpack.dev.js</code><br><code>npm run build --  --config webpack.prod.js</code><br>也可以在package.json中修改命令：<br><img src="https://img-blog.csdnimg.cn/20200525160100672.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>(4)然后可以在不同的环境下根据方法1定制不同的变量</p>
+
       
 
       
@@ -202,7 +203,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/25/webpack%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">展开全文 >></a>
         </p>
       
 
@@ -232,30 +233,28 @@
 
 
   
-    <article id="post-vue2中使用better-scroll插件实现滚动效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-webpack-配置style-loader的insertAt出现的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">vue2中使用better-scroll插件实现滚动效果</a>
+      <a class="article-title" href="/2020/05/24/webpack-%E9%85%8D%E7%BD%AEstyle-loader%E7%9A%84insertAt%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">webpack: 配置style-loader的insertAt出现的问题</a>
     </h1>
   
 
         
-        <a href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/" class="archive-article-date">
-  	<time datetime="2020-02-10T09:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-10</time>
+        <a href="/2020/05/24/webpack-%E9%85%8D%E7%BD%AEstyle-loader%E7%9A%84insertAt%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-05-24T02:56:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#vue2中使用better-scroll实现滚动效果"></a></p>
-<h4 id="1-npm安装插件"><a href="#1-npm安装插件" class="headerlink" title="1.npm安装插件"></a>1.npm安装插件</h4><p>(1)<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="noopener">到github上查看最新版本号</a><br>(2)在package.json中添加依赖<br><img src="https://img-blog.csdnimg.cn/20200210160243969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）执行<code>npm install</code>安装，安装成功后node_module目录下生成了better-scroll文件夹<br><img src="https://img-blog.csdnimg.cn/20200210165755185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-使用插件"><a href="#2-使用插件" class="headerlink" title="2.使用插件"></a>2.使用插件</h4><p>（1）在需要实现滚动效果的组件中引入插件<br><code>import BScroll from &#39;better-scroll&#39;;</code><br>（2）标记元素<br>使用ref属性来标记需要实现滚动效果的元素，然后在js中通过this.$refs获取该元素<br><img src="https://img-blog.csdnimg.cn/20200210165606153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）绑定dom<br><img src="https://img-blog.csdnimg.cn/20200210165643704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
+        <p>使用style-loader会默认将css文件里的样式拷贝到html文件里head标签的底部：<br><img src="https://img-blog.csdnimg.cn/20200524103342809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果想要插入到head标签的顶部，应该使用insert,而不是insertAt,因为api改变了……<br>更新日志里说明了这一点：<br><img src="https://img-blog.csdnimg.cn/20200524103815936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>正确的写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123; <span class="comment">// 模块</span></span><br><span class="line">    rules: [ </span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">      use:[</span><br><span class="line">        &#123;</span><br><span class="line">          loader:<span class="string">'style-loader'</span>,</span><br><span class="line">          options:&#123;</span><br><span class="line">           insert: <span class="function"><span class="keyword">function</span> <span class="title">insertAtTop</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'head'</span>);</span><br><span class="line">             <span class="comment">// eslint-disable-next-line no-underscore-dangle</span></span><br><span class="line">             <span class="keyword">var</span> lastInsertedElement =</span><br><span class="line">               <span class="built_in">window</span>._lastElementInsertedByStyleLoader;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">if</span> (!lastInsertedElement) &#123;</span><br><span class="line">               parent.insertBefore(element, parent.firstChild);</span><br><span class="line">             &#125; <span class="keyword">else</span> <span class="keyword">if</span> (lastInsertedElement.nextSibling) &#123;</span><br><span class="line">               parent.insertBefore(element, lastInsertedElement.nextSibling);</span><br><span class="line">             &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               parent.appendChild(element);</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             <span class="comment">// eslint-disable-next-line no-underscore-dangle</span></span><br><span class="line">             <span class="built_in">window</span>._lastElementInsertedByStyleLoader = element;</span><br><span class="line">           &#125;,</span><br><span class="line">          &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">         <span class="string">'css-loader'</span>,</span><br><span class="line">         <span class="string">'postcss-loader'</span>,</span><br><span class="line">         <span class="string">'less-loader'</span>,</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -267,7 +266,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/24/webpack-%E9%85%8D%E7%BD%AEstyle-loader%E7%9A%84insertAt%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
         </p>
       
 
@@ -297,31 +296,27 @@
 
 
   
-    <article id="post-vue-使用vue-resource" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-webpack默认的配置文件名称" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">vue:使用vue-resource</a>
+      <a class="article-title" href="/2020/05/24/webpack%E9%BB%98%E8%AE%A4%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/">webpack默认的配置文件名称</a>
     </h1>
   
 
         
-        <a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" class="archive-article-date">
-  	<time datetime="2020-02-06T06:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
+        <a href="/2020/05/24/webpack%E9%BB%98%E8%AE%A4%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/" class="archive-article-date">
+  	<time datetime="2020-05-24T02:24:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#vue:使用vue-resource"></a></p>
-<h4 id="1-在package-json中添加依赖"><a href="#1-在package-json中添加依赖" class="headerlink" title="1. 在package.json中添加依赖"></a>1. 在package.json中添加依赖</h4><p>如图，后面的版本号根据自己喜欢的来写。<br><img src="https://img-blog.csdnimg.cn/20200206144039119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h4><p>执行<code>npm install</code>安装，完成后node_modules目录下生成了vue-resource文件夹<br><img src="https://img-blog.csdnimg.cn/20200206144321828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="3-导入插件并注册"><a href="#3-导入插件并注册" class="headerlink" title="3.导入插件并注册"></a>3.导入插件并注册</h4><p>将vue-resource导入到main.js中并全局注册<br><img src="https://img-blog.csdnimg.cn/2020020614442897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="4-发送请求"><a href="#4-发送请求" class="headerlink" title="4.发送请求"></a>4.发送请求</h4><p>这里要提前准备好接收请求的接口或者mock数据<br><img src="https://img-blog.csdnimg.cn/20200206144714186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt=""></p>
+        <p>Webpack的配置文件名称默认使用webpack.confid.js或webpackfile.js：<br>可在node_modules/webpack-cli/bin/config/config-yarn.js中查看<br><img src="https://img-blog.csdnimg.cn/20200524102117145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果想要修改配置文件的名称，可执行命令：<br><img src="https://img-blog.csdnimg.cn/20200524102229178.png" alt="在这里插入图片描述"><br>也可以在package.json的scripts里添加：<br><code>&quot;build&quot;: &quot;webpack --config webpack.config.js&quot;,</code><br>其中 webpack.config.js可以替换为自己想要的名称<img src="https://img-blog.csdnimg.cn/20200524102804697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
       
 
@@ -334,7 +329,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/24/webpack%E9%BB%98%E8%AE%A4%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/">展开全文 >></a>
         </p>
       
 
@@ -364,40 +359,36 @@
 
 
   
-    <article id="post-vue2-安装、配置、使用前端路由vue-router" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-flex属性：flex-grow-flex-basis-flex-shrink" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">vue2:安装、配置、使用前端路由vue-router</a>
+      <a class="article-title" href="/2020/05/17/flex%E5%B1%9E%E6%80%A7%EF%BC%9Aflex-grow-flex-basis-flex-shrink/">flex属性：flex-grow/flex-basis/flex-shrink</a>
     </h1>
   
 
         
-        <a href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/" class="archive-article-date">
-  	<time datetime="2020-02-05T10:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-05</time>
+        <a href="/2020/05/17/flex%E5%B1%9E%E6%80%A7%EF%BC%9Aflex-grow-flex-basis-flex-shrink/" class="archive-article-date">
+  	<time datetime="2020-05-17T13:37:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="vue2:安装、配置、使用前端路由vue-router"></a></p>
-<h4 id="1-查看是否已安装vue-router"><a href="#1-查看是否已安装vue-router" class="headerlink" title="1.查看是否已安装vue-router"></a>1.查看是否已安装vue-router</h4><p>首先查看package.json文件中是否已经添加了vue-router依赖：<br><img src="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再查看node_modules文件夹下是否有vue-router文件夹<br><img src="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果有以上文件，则说明已经安装了vue-router。<br>一般在搭建项目时会出现是否安装vue-router这一个选项：<br><img src="https://img-blog.csdnimg.cn/20200205180054478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果选了yes，项目搭建时就会安装vue-router。<br>如果package.json中没有这句代码或者没有vue-router文件夹，则自己在packsge.json中添加一句代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;vue-router&quot;: &quot;^3.0.1&quot;</span><br></pre></td></tr></table></figure>
-<p>(后面的”^3.0.1”为版本号，可以自己去官网或者github上查看最新稳定版的版本号)，添加完以后执行 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>再去查看node_modules文件夹下是否有vue-router文件夹，如果有，则完成安装。</p>
-<h4 id="2-添加组件"><a href="#2-添加组件" class="headerlink" title="2.添加组件"></a>2.添加组件</h4><p>添加所需的组件<br><img src="https://img-blog.csdnimg.cn/20200205180626552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="3-修改index-js"><a href="#3-修改index-js" class="headerlink" title="3.修改index.js"></a>3.修改index.js</h4><p>首先导入上面创建的组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import goods from &#39;..&#x2F;components&#x2F;goods&#x2F;goods&#39;;</span><br><span class="line">import seller from &#39;..&#x2F;components&#x2F;seller&#x2F;seller&#39;;</span><br><span class="line">import ratings from &#39;..&#x2F;components&#x2F;ratings&#x2F;ratings&#39;;</span><br></pre></td></tr></table></figure>
-<p>然后配置导入的组件作为路由：{第一个{}及其内容不是必需的，只是为了设置一个默认显示的路由}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;goods&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;seller&#39;,</span><br><span class="line">      name: &#39;seller&#39;,</span><br><span class="line">      component: seller</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;ratings&#39;,</span><br><span class="line">      name: &#39;ratings&#39;,</span><br><span class="line">      component: ratings</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如图：<br><img src="https://img-blog.csdnimg.cn/20200205181316966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="4-使用路由"><a href="#4-使用路由" class="headerlink" title="4.使用路由"></a>4.使用路由</h4><p>首先在main.js中引入刚才配置好的路由<br><img src="https://img-blog.csdnimg.cn/20200205182609344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后在app.vue中添加路由，这里的router-link标签中to属性的值要与index.js中path的值对应<br><img src="https://img-blog.csdnimg.cn/20200205182747991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="5-效果"><a href="#5-效果" class="headerlink" title="5.效果"></a>5.效果</h4><p>点击商品：<br><img src="https://img-blog.csdnimg.cn/20200205183201929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击评论<br><img src="https://img-blog.csdnimg.cn/20200205183218229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+        <p><a href="###flex属性：flex-grow/flex-basis/flex-shrink"></a><br>flex的“可伸缩”主要体现在flex-grow/flex-basis/flex-shrink这三个属性上</p>
+<h5 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h5><p>未应用flex-grow和flex-shrink之前，flexbox中的项的初始大小,默认取值是auto</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.container</span> <span class="selector-tag">ul</span>&#123;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            background: red;</span><br><span class="line">            width: 100%;</span><br><span class="line">            padding: 0;</span><br><span class="line">        &#125;</span><br><span class="line">        li&#123;</span><br><span class="line">            height: 100px;</span><br><span class="line">            list-style: none;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(1)</span>&#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            background: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: pink;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(3)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>这里是li11111111111111111111111111111111111111111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>这里是li<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>这里是li<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020051720595380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h5><p> 应用了flex-basis后如果有剩余空间该如何分配到每个项上，默认是不分配，即flex-grow: 0, 这里设置的数值含义：此项所占用剩余空间的比值 =flex-grow取值 / 所有的项设置的flex-grow的属性值的总和，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.container</span> <span class="selector-tag">ul</span>&#123;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            background: red;</span><br><span class="line">            width: 100%;</span><br><span class="line">            padding: 0;</span><br><span class="line">        &#125;</span><br><span class="line">        li&#123;</span><br><span class="line">            height: 100px;</span><br><span class="line">            list-style: none;</span><br><span class="line"><span class="css">            <span class="comment">/*flex-basis: 0;*/</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(1)</span>&#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            background: green;</span><br><span class="line">            flex-grow: 2;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: pink;</span><br><span class="line">            flex-grow: 1;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(3)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: blue;</span><br><span class="line">            flex-grow: 1;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--   &lt;li&gt;这里是li11111111111111111111111111111111111111111&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li&gt;这里是li&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li&gt;这里是li&lt;/li&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>应用flex-grow前：<br><img src="https://img-blog.csdnimg.cn/20200517210806697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>应用flex-grow后：<br><img src="https://img-blog.csdnimg.cn/20200517211254884.png" alt="在这里插入图片描述"></p>
+<h5 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h5><p> 应用flex-basis后如果超出了flexbox范围，该怎么收缩，默认值时1，即每项都等比例收缩。收缩公式：<br>缩小的值 = （ ( 此项的flex-shrink * flex-basis) / 所有项的 （flex-shrink * flex-basis）之和 ） * 超出flexbox的空间大小</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.container</span> <span class="selector-tag">ul</span>&#123;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            background: red;</span><br><span class="line">            width: 900px;</span><br><span class="line">            padding: 0;</span><br><span class="line">        &#125;</span><br><span class="line">        li&#123;</span><br><span class="line">            height: 100px;</span><br><span class="line">            list-style: none;</span><br><span class="line"><span class="css">            <span class="comment">/*flex-basis: 0;*/</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(1)</span>&#123;</span></span><br><span class="line">            width: 1000px;</span><br><span class="line">            background: green;</span><br><span class="line">            flex-grow: 2;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: pink;</span><br><span class="line">            flex-grow: 1;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(3)</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            background: blue;</span><br><span class="line">            flex-grow: 1;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--   &lt;li&gt;这里是li11111111111111111111111111111111111111111&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li&gt;这里是li&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li&gt;这里是li&lt;/li&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200517213307875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>flex属性是这三个属性的合写：<br>flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;</p>
 
       
 
@@ -410,7 +401,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/17/flex%E5%B1%9E%E6%80%A7%EF%BC%9Aflex-grow-flex-basis-flex-shrink/">展开全文 >></a>
         </p>
       
 
@@ -440,6 +431,429 @@
 
 
   
+    <article id="post-BFC的作用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/15/BFC%E7%9A%84%E4%BD%9C%E7%94%A8/">BFC的作用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/15/BFC%E7%9A%84%E4%BD%9C%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-05-15T13:55:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="0-BFC内部的特点"><a href="#0-BFC内部的特点" class="headerlink" title="0.BFC内部的特点"></a>0.BFC内部的特点</h5><p>（1）上下两个盒子的margin折叠<br>（2）能够管理float元素（可计算float元素的宽高）<br>（3）BFC内的元素不会对BFC外的元素定位造成影响<br>（4）盒子的左边紧挨着BFC的左边</p>
+<h5 id="1-右边自适应的两栏布局"><a href="#1-右边自适应的两栏布局" class="headerlink" title="1.右边自适应的两栏布局"></a>1.右边自适应的两栏布局</h5><p>使用BFC前：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.left</span> &#123;</span></span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 150px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.right</span> &#123;</span></span><br><span class="line">        height: 300px;</span><br><span class="line">        background: green;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>LEFT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>RIGHT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200515214217147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用BFC使红色块下方没有绿色块：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.left</span> &#123;</span></span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 150px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.right</span> &#123;</span></span><br><span class="line">        height: 300px;</span><br><span class="line">        background: green;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>LEFT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>RIGHT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200515214601470.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>除了使用overfloat:hidden，还可以使用其他方式，只要是让右边的盒子产生BFC都可，产生BFC的方式：<br>（1）overfloat :  除了visible以外的值<br>（2）float：除了none以外的值<br>（3）position：除了static和reletive以外的值<br>（4）display: inline-block/table-cell/flex/table-caption/inline-flex</p>
+<h5 id="2-清除浮动"><a href="#2-清除浮动" class="headerlink" title="2.清除浮动"></a>2.清除浮动</h5><p>父元素高度塌陷：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>清除浮动<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.par</span> &#123;</span></span><br><span class="line">        border: 5px solid rgb(91, 243, 30);</span><br><span class="line">        width: 300px;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">        border: 5px solid red;</span><br><span class="line"><span class="css">        <span class="selector-tag">width</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"par"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200515215249354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>利用BFC清除浮动：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>清除浮动<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.par</span> &#123;</span></span><br><span class="line">        border: 5px solid rgb(91, 243, 30);</span><br><span class="line">        width: 300px;</span><br><span class="line"><span class="css">        <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>; <span class="comment">/*方法1*/</span></span></span><br><span class="line"><span class="css">        <span class="comment">/*display: flex;*/</span> <span class="comment">/*方法2*/</span></span></span><br><span class="line"><span class="css">        <span class="comment">/*display: inline-block;*/</span> <span class="comment">/*方法3*/</span></span></span><br><span class="line"><span class="css">        <span class="comment">/*position: absolute;*/</span> <span class="comment">/*方法4*/</span></span></span><br><span class="line"><span class="css">        <span class="comment">/*position: fixed;*/</span>  <span class="comment">/*方法5*/</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">   /* .par::after&#123; !*方法6*!</span><br><span class="line">        content: '';</span><br><span class="line">        clear: both;a</span><br><span class="line">        display: block;</span><br><span class="line">    &#125;*/</span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">        border: 5px solid red;</span><br><span class="line"><span class="css">        <span class="selector-tag">width</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"par"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200515215408687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/15/BFC%E7%9A%84%E4%BD%9C%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue生命周期方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/30/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95/">vue生命周期方法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/30/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-04-30T13:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="vue生命周期图示"><a href="#vue生命周期图示" class="headerlink" title="vue生命周期图示"></a>vue生命周期图示</h5><p>来自<a href="https://www.it666.com/" target="_blank" rel="noopener">李南江</a>老师的图:<br><img src="https://img-blog.csdnimg.cn/20200430214812659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="创建期间的生命周期方法"><a href="#创建期间的生命周期方法" class="headerlink" title="创建期间的生命周期方法"></a>创建期间的生命周期方法</h5><h6 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate:"></a>beforeCreate:</h6><p>在调用beforeCreate的时候, Vue实例刚刚被创建出来，此时还未初始化好Vue实例中的数据和方法, 所以还不能访问Vue实例中保存的数据和方法</p>
+<h6 id="created"><a href="#created" class="headerlink" title="created:"></a>created:</h6><p>在调用created的时候, 是我们最早能够访问Vue实例中保存的数据和方法的地方</p>
+<h6 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount:"></a>beforeMount:</h6><p>在调用beforeMount的时候, 表示Vue已经编译好了最终模板, 但是还没有将最终的模板渲染到界面上</p>
+<h6 id="mounted"><a href="#mounted" class="headerlink" title="mounted:"></a>mounted:</h6><p>在调用mounted的时候, 表示Vue已经完成了模板的渲染, 表示我们已经可以拿到界面上渲染之后的内容了(内存中生成的HTML内容已经替换掉默认模板的内容)</p>
+<h5 id="运行期间的生命周期方法"><a href="#运行期间的生命周期方法" class="headerlink" title="运行期间的生命周期方法"></a>运行期间的生命周期方法</h5><h6 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate:"></a>beforeUpdate:</h6><p> 在调用beforeUpdate的时候, 表示Vue实例中保存的数据被修改了，数据已经更新了, 但是界面还没有更新</p>
+<h6 id="updated"><a href="#updated" class="headerlink" title="updated:"></a>updated:</h6><p>在调用updated的时候, 表示Vue实例中保存的数据被修改了, 并且界面也同步了修改的数据了</p>
+<h5 id="销毁期间的生命周期方法"><a href="#销毁期间的生命周期方法" class="headerlink" title="销毁期间的生命周期方法"></a>销毁期间的生命周期方法</h5><h6 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy:"></a>beforeDestroy:</h6><p> 在调用beforeDestroy的时候, 表示当前组件即将被销毁了（v-if为false等情况下），beforeDestroy函数是我们最后能够访问到组件数据和方法的函数</p>
+<h6 id="destroyed："><a href="#destroyed：" class="headerlink" title="destroyed："></a>destroyed：</h6><p> 在调用destroyed的时候, 表示当前组件已经被销毁了，不要在这个生命周期方法中再去操作组件中数据和方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/30/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue组件的驼峰式命名与短横线分割命名" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/29/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E9%A9%BC%E5%B3%B0%E5%BC%8F%E5%91%BD%E5%90%8D%E4%B8%8E%E7%9F%AD%E6%A8%AA%E7%BA%BF%E5%88%86%E5%89%B2%E5%91%BD%E5%90%8D/">vue组件的驼峰式命名与短横线分割命名</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/29/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E9%A9%BC%E5%B3%B0%E5%BC%8F%E5%91%BD%E5%90%8D%E4%B8%8E%E7%9F%AD%E6%A8%AA%E7%BA%BF%E5%88%86%E5%89%B2%E5%91%BD%E5%90%8D/" class="archive-article-date">
+  	<time datetime="2020-04-29T06:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-注册组件的时候使用了驼峰命名"><a href="#1-注册组件的时候使用了驼峰命名" class="headerlink" title="1.注册组件的时候使用了驼峰命名"></a>1.注册组件的时候使用了驼峰命名</h5><p>如果在<strong>注册组件</strong>的时候使用了驼峰命名, 那么在<strong>使用时</strong>需要转换成短横线分隔命名</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>组件命名<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-son</span>&gt;</span><span class="tag">&lt;/<span class="name">my-son</span>&gt;</span><span class="comment">&lt;!-- 使用时：短横线分割命名--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>......<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    Vue.component(<span class="string">"mySon"</span>, &#123; <span class="comment">// 注册时：驼峰式命名</span></span></span><br><span class="line"><span class="actionscript">        template: <span class="string">"#son"</span>,</span></span><br><span class="line">        &#125;);</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="2传递数据时使用驼峰名称"><a href="#2传递数据时使用驼峰名称" class="headerlink" title="2传递数据时使用驼峰名称"></a>2传递数据时使用驼峰名称</h5><p>如果父组件向子组件传递数据时使用了短横线分隔命名, 子组件接收时写驼峰式命名</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>组件命名<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-son</span> <span class="attr">:parent-name</span>=<span class="string">"name"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-son</span>&gt;</span><span class="comment">&lt;!-- 向子组件传递数据：短横线分割命名，不能使用驼峰式--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;parentName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="comment">&lt;!-- 驼峰式使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    Vue.component(<span class="string">"mySon"</span>, &#123; </span></span><br><span class="line"><span class="actionscript">        template: <span class="string">"#son"</span>,</span></span><br><span class="line"><span class="actionscript">        props:[<span class="string">"parentName"</span>] <span class="comment">// 驼峰式接收</span></span></span><br><span class="line">        &#125;);</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line"><span class="actionscript">        	name:<span class="string">"test"</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-传递方法时双方都不能使用驼峰命名-只能用短横线分隔命名"><a href="#3-传递方法时双方都不能使用驼峰命名-只能用短横线分隔命名" class="headerlink" title="3.传递方法时双方都不能使用驼峰命名, 只能用短横线分隔命名"></a>3.传递方法时双方都不能使用驼峰命名, 只能用短横线分隔命名</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>组件命名<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-son</span> <span class="attr">:parent-name</span>=<span class="string">"name"</span> @<span class="attr">parent-fn</span>=<span class="string">"fn"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-son</span>&gt;</span><span class="comment">&lt;!-- 向子组件传递方法：短横线分割命名，不能使用驼峰式--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"fn"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;parentName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    Vue.component(<span class="string">"mySon"</span>, &#123;</span></span><br><span class="line"><span class="actionscript">        template: <span class="string">"#son"</span>,</span></span><br><span class="line"><span class="actionscript">        props:[<span class="string">"parentName"</span>],</span></span><br><span class="line">        methods:&#123;</span><br><span class="line">        	fn()&#123;</span><br><span class="line"><span class="actionscript">				<span class="keyword">this</span>.$emit(<span class="string">"parent-fn"</span>); <span class="comment">// 短横线式接收</span></span></span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line"><span class="actionscript">        	name:<span class="string">"test1"</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">        	fn()&#123;</span><br><span class="line"><span class="javascript">				<span class="built_in">console</span>.log(<span class="string">"test2"</span>);</span></span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/29/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E9%A9%BC%E5%B3%B0%E5%BC%8F%E5%91%BD%E5%90%8D%E4%B8%8E%E7%9F%AD%E6%A8%AA%E7%BA%BF%E5%88%86%E5%89%B2%E5%91%BD%E5%90%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端面试题：正则表达式以及replace的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/">前端面试题：正则表达式以及replace的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-04-21T13:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">template</span>(<span class="params">tmpl, data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br><span class="line">template(<span class="string">'我的名字是&#123;&#123;name&#125;&#125;，我的工作是&#123;&#123;work&#125;&#125;，我喜欢&#123;&#123;work&#125;&#125;'</span>, &#123;</span><br><span class="line">   name: <span class="string">'小周'</span>,</span><br><span class="line">   work: <span class="string">'编程'</span></span><br><span class="line"> &#125;);</span><br><span class="line">  <span class="comment">// 函数的返回是 '我的名字是小周，我的工作是编程，我喜欢编程'</span></span><br></pre></td></tr></table></figure>
+<h5 id="解法1：使用正则表达式以及replace"><a href="#解法1：使用正则表达式以及replace" class="headerlink" title="解法1：使用正则表达式以及replace"></a>解法1：使用正则表达式以及replace</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">template</span>(<span class="params">tmpl,data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> str = tmpl.replace(<span class="regexp">/\&#123;\&#123;([^\&#125;]+)\&#125;\&#125;/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> data[<span class="built_in">arguments</span>[<span class="number">1</span>]];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">template(<span class="string">'我的名字是&#123;&#123;name&#125;&#125;，我的工作是&#123;&#123;work&#125;&#125;，我喜欢&#123;&#123;work&#125;&#125;'</span>, &#123;</span><br><span class="line">   name: <span class="string">'小周'</span>,</span><br><span class="line">   work: <span class="string">'编程'</span></span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>  replace方法第二个参数为替换函数，这个函数可以接受多个参数。其中，第一个参数是捕捉到的内容，第二个参数是捕捉到的组匹配（有多少个组匹配，就有多少个对应的参数）。此外，最后还可以添加两个参数，倒数第二个参数是捕捉到的内容在整个字符串中的位置（比如从第五个位置开始），最后一个参数是原字符串。<br>  参考：<a href="https://wangdoc.com/javascript/stdlib/regexp.html#stringprototypereplace" target="_blank" rel="noopener">https://wangdoc.com/javascript/stdlib/regexp.html#stringprototypereplace</a></p>
+<h5 id="解法2：直接粗暴"><a href="#解法2：直接粗暴" class="headerlink" title="解法2：直接粗暴"></a>解法2：直接粗暴</h5>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">template</span> (<span class="params">tmpl, data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// your code</span></span><br><span class="line">  <span class="keyword">let</span> arr = tmpl.split(<span class="string">'&#125;&#125;'</span>)</span><br><span class="line">  arr.splice(arr.length - <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">  <span class="comment">// console.log(arr)</span></span><br><span class="line">  <span class="keyword">let</span> ans = []</span><br><span class="line">  <span class="keyword">let</span> left, right</span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    left = arr[key].split(<span class="string">'&#123;&#123;'</span>)[<span class="number">0</span>]</span><br><span class="line">    right = arr[key].split(<span class="string">'&#123;&#123;'</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> (prop <span class="keyword">in</span> data) &#123;</span><br><span class="line">      <span class="keyword">if</span> (right === prop) &#123;</span><br><span class="line">        right = data[prop]</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans.push(left + right)</span><br><span class="line">  &#125;</span><br><span class="line">  ans = ans.join(<span class="string">''</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(ans)</span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line">template(<span class="string">'我的名字是&#123;&#123;name&#125;&#125;，我的工作是&#123;&#123;work&#125;&#125;，我喜欢&#123;&#123;work&#125;&#125;'</span>, &#123;</span><br><span class="line">  name: <span class="string">'小周'</span>,</span><br><span class="line">  work: <span class="string">'编程'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数值转换：parseInt、parseFloat、Number的用法和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">数值转换：parseInt、parseFloat、Number的用法和区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-16T14:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Number（）"><a href="#1-Number（）" class="headerlink" title="1.Number（）"></a>1.Number（）</h5><p>Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。<br>Number()的转换规则：</p>
+<figure class="highlight plain"><figcaption><span>num </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0</span><br><span class="line">若x为null:num&#x3D;0；</span><br><span class="line">若x为undefined:num&#x3D;NaN;</span><br><span class="line">若x为数值，直接返回；</span><br><span class="line">若x为字符串：</span><br><span class="line">			（1）字符串中只包含数字（或前面带负号）：忽略前导0（如果有的话）返回，如&#96;&#96;&#96;let num &#x3D; Number(&quot;0012&quot;); &#x2F;&#x2F; num &#x3D; 12</span><br></pre></td></tr></table></figure>
+<pre><code>（2）字符串中包含有效的浮点数：忽略前导0（如果有的话）返回浮点数，如```let num = Number(&quot;001.23&quot;); // num = 1.23```
+（3）字符串为空，即x=&quot;&quot;：num=0
+（4）字符串包含十六进制格式：转换为相同大小的十进制数，如```let num = Number(&quot;0xA&quot;); // num = 10```
+（5）其他情况：num = NaN            </code></pre><h5 id="2-parseInt"><a href="#2-parseInt" class="headerlink" title="2.parseInt()"></a>2.parseInt()</h5><p>parseInt()专门用于把字符串转换成数值。<br>用法1：<code>let num = parseInt(x);</code><br>在进行转换时首先找到x中第一个非空格字符（也就是会忽略字符串中前面的空格，如<code>x = &quot;    123e&quot;</code>），如果第一个字符不是数字或者负号，num = NaN;只有一个参数的parseInt不识别八进制数，除非用用法2。<br>用法2：<code>let num = parseInt(&quot;0xAF&quot;,16)  // num = 175</code>第二个参数代表16进制</p>
+<h5 id="3-parseFloat"><a href="#3-parseFloat" class="headerlink" title="3.parseFloat()"></a>3.parseFloat()</h5><p>parseFloat与parseInt类似，专门用于把字符串转换成浮点数值。<br>注意点：<br>（1）如果字符串中有多个小数点，只有第一个有效，其他的被忽略，如<code>let num = parseFloat(&quot;1.1314.520&quot;); // num = 1.1314</code><br>（2）parseFloat只解析十进制数，十六进制格式会被转换成0，如<code>let num = parseFloat(&quot;0xA&quot;); // num = 0</code><br>（3）如果字符串包含的是可解析的整数，函数会返回整数，没有小数点，如<code>let num = parseFloat(&quot;13432key&quot;); // num = 13432</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux-make-makefile的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">Linux make/makefile的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-03-28T07:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="###make/makefile的使用"></a><br>需求：<br>编写程序，统计学生的成绩，包括成绩的最大值、最小值、总和以及平均值， 并要求利用make工程管理器进行编译。<br>（1）建立C程序 mymax.c<br>（2）建立C程序 mymin.c<br>（3）建立C程序 mysum.c<br>（4）建立C程序 myavg.c<br>（5）建立C程序 my.h<br>（6）建立C程序 mymain.c<br>（7）建立静态库libmylib.a<br>（8）编译mymain.c程序<br>（9）执行mymain程序</p>
+<h5 id="1-目录："><a href="#1-目录：" class="headerlink" title="1.目录："></a>1.目录：</h5><p><img src="https://img-blog.csdnimg.cn/20200328151452409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="2-编写-c和-h文件"><a href="#2-编写-c和-h文件" class="headerlink" title="2.编写.c和.h文件"></a>2.编写.c和.h文件</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMax.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">max</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;<span class="built_in">max</span>)&#123;</span><br><span class="line">			<span class="built_in">max</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"maximum is %d\n"</span>,<span class="built_in">max</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMin.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">min</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&lt;<span class="built_in">min</span>)&#123;</span><br><span class="line">			<span class="built_in">min</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"minimum is %d\n"</span>,<span class="built_in">min</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mySum.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Sum is %d\n"</span>,sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myAvg.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> avg=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	avg=(<span class="keyword">float</span>)sum/(<span class="keyword">float</span>)num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Average is "</span>&lt;&lt;avg&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//my.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MY_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_H</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myMain.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"my.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> scores[<span class="number">10000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the number of students:"</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the scores£º"</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;scores[i];</span><br><span class="line">	&#125;</span><br><span class="line">	myMax(scores,num);</span><br><span class="line">	myMin(scores,num);</span><br><span class="line">	mySum(scores,num);</span><br><span class="line">	myAvg(scores,num);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-编写makefile文件"><a href="#3-编写makefile文件" class="headerlink" title="3.编写makefile文件"></a>3.编写makefile文件</h5><p>格式：（注意：命令command前需要有tab）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">		command</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200328151551684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="4-编译执行"><a href="#4-编译执行" class="headerlink" title="4.编译执行"></a>4.编译执行</h5><p><img src="https://img-blog.csdnimg.cn/20200328151734930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

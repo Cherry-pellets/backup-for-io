@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.huangjinxiu.top">
-  <title>Archives: 2020/2 | Cherry-pellets的博客</title>
+  <title>Cherry-pellets的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前端">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cherry-pellets的博客">
-<meta property="og:url" content="http://blog.huangjinxiu.top/archives/2020/02/index.html">
+<meta property="og:url" content="http://blog.huangjinxiu.top/page/2/index.html">
 <meta property="og:site_name" content="Cherry-pellets的博客">
 <meta property="og:description" content="前端">
 <meta property="og:locale" content="en_US">
@@ -166,182 +166,683 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-centos7中用hadoop执行java文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/25/centos7%E4%B8%AD%E7%94%A8hadoop%E6%89%A7%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">centos7中用hadoop执行java文件</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/25/centos7%E4%B8%AD%E7%94%A8hadoop%E6%89%A7%E8%A1%8Cjava%E6%96%87%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-03-25T08:16:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="###centos7中用hadoop执行java文件"></a></p>
+<h5 id="1-安装jdk和配置环境变量"><a href="#1-安装jdk和配置环境变量" class="headerlink" title="1.安装jdk和配置环境变量"></a>1.安装jdk和配置环境变量</h5><p><a href="https://blog.csdn.net/qq_43650979/article/details/105081051" target="_blank" rel="noopener">点击这里查看在centos7中安装jdk8并配置环境变量</a></p>
+<h5 id="2-安装hadoop"><a href="#2-安装hadoop" class="headerlink" title="2.安装hadoop"></a>2.安装hadoop</h5><p>（1）下载<br>可以到<a href="https://hadoop.apache.org/releases.html" target="_blank" rel="noopener">官网</a>查看自己需要的版本<br><img src="https://img-blog.csdnimg.cn/20200325154611400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后执行下载命令：<br><img src="https://img-blog.csdnimg.cn/20200325154407798.PNG" alt="在这里插入图片描述"><br>然后解压到自己喜欢的路径下，格式：tar zxvf 源文件名  -C 目的路径<br><img src="https://img-blog.csdnimg.cn/20200325155054326.PNG" alt="在这里插入图片描述"><br>（2）Hadoop基本设置<br>打开hadoop路径下的 etc/hadoop/hadoop-env.sh文件，用vim编辑设置Java环境：<code>export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241</code>（根据自己的jdk版本来设置）<br><img src="https://img-blog.csdnimg.cn/20200325155538489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200325155632564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）设置Hadoop环境变量</p>
+<figure class="highlight vim"><figcaption><span>/etc/profile```编辑环境变量：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">![在这里插入图片描述](http<span class="variable">s:</span>//img-blog.csdnimg.<span class="keyword">cn</span>/<span class="number">2020032515593032</span>.png?<span class="keyword">x</span>-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70)</span><br><span class="line">##### <span class="number">3</span>.利用hadoop执行java包</span><br><span class="line">（<span class="number">1</span>）编辑自己的java文件，然后放到Hadoop目录下的javasource文件夹中</span><br><span class="line">![在这里插入图片描述](http<span class="variable">s:</span>//img-blog.csdnimg.<span class="keyword">cn</span>/<span class="number">2020032516034390</span>.png?<span class="keyword">x</span>-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70)</span><br><span class="line">（<span class="number">2</span>）编译java文件</span><br><span class="line">格式：```javac XXXX.java -d XXX</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200325160638543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）打包<br>格式：<code>jar –cvf XXXXXX.jar –C XXX/ .</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c: 创建压缩文件</span><br><span class="line">-v: 输出压缩详细情况</span><br><span class="line">-f: 指定压缩文件</span><br><span class="line">-m: 指定清单文件（manifest.mf是描述JAR内容的清单文件） </span><br><span class="line">-C dir：指定目录</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200325160657804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（4）执行<br>格式：<code>bin/hadoop jar xxx.jar packagename.classname input output</code><br>这里的WordCountV2程序需要读取一个文件README.txt，然后计算每个单词出现的次数，然后输出到out文件夹下（如果out已存在，先删除out再执行）<br><img src="https://img-blog.csdnimg.cn/20200325160718592.png" alt="在这里插入图片描述"><br>（5）查看结果<br><img src="https://img-blog.csdnimg.cn/2020032516074030.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/25/centos7%E4%B8%AD%E7%94%A8hadoop%E6%89%A7%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-centos7环境下安装jdk8以及配置环境变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/" class="archive-article-date">
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/centos7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jdk8%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">centos7环境下安装jdk8以及配置环境变量</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/24/centos7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jdk8%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="archive-article-date">
+  	<time datetime="2020-03-24T13:34:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="###centos7环境下安装jdk8以及配置环境变量"></a></p>
+<h5 id="1-获取jdk8下载链接"><a href="#1-获取jdk8下载链接" class="headerlink" title="1.获取jdk8下载链接"></a>1.获取jdk8下载链接</h5><p>打开<a href="https://www.oracle.com/cn/java/technologies/javase-jdk8-downloads.html" target="_blank" rel="noopener">网址</a>选择合适自己系统的jdk版本，点击下载<br><img src="https://img-blog.csdnimg.cn/20200324210328336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>要注意选择.tar.gz的文件，如果不知道系统是32bit还是64bit,可以用<code>uname -a</code>查看<br><img src="https://img-blog.csdnimg.cn/2020032421050333.png" alt="在这里插入图片描述"><br>点击同意：<br><img src="https://img-blog.csdnimg.cn/20200324210650631.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后会自动跳转登录：<br><img src="https://img-blog.csdnimg.cn/20200324210745792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>登录成功后会出现文件下载链接以及文件名称：<br><img src="https://img-blog.csdnimg.cn/20200324210853144.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="2-下载并解压"><a href="#2-下载并解压" class="headerlink" title="2.下载并解压"></a>2.下载并解压</h5><p>然后在centos中输入以下命令， 格式为：wget  -O 文件名  网址<br>（文件名和网址是上图中复制粘贴过来的）<br><img src="https://img-blog.csdnimg.cn/20200324212023473.png" alt="在这里插入图片描述"><br>下载完成后解压文件：命令格式：tar zxvf 压缩包名称 -C 目的地路径<br><img src="https://img-blog.csdnimg.cn/20200324211745398.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200324212249136.png" alt="在这里插入图片描述"></p>
+<h5 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h5><p>解压后配置环境变量：输入<code>vi /etc/profile</code>进入vim编辑区<br><img src="https://img-blog.csdnimg.cn/2020032421231623.png" alt="在这里插入图片描述"><br>按i进入输入模式，然后一直按↓使光标移到文件末尾，添加以下配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#set java environment</span><br><span class="line">JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_241</span><br><span class="line">CLASSPATH&#x3D;.:$&#123;JAVA_HOME&#125;&#x2F;jre&#x2F;lib&#x2F;rt.jar:$&#123;JAVA_HOME&#125;&#x2F;lib&#x2F;dt.jar:$&#123;JAVA_HOME&#125;&#x2F;lib&#x2F;tools.jar</span><br><span class="line">PATH&#x3D;$PATH:$&#123;JAVA_HOME&#125;&#x2F;bin</span><br><span class="line">export JAVA_HOME CLASSPATH PATH</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200325125837935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>添加完成后按esc退出插入模式，输入:wq保存并退出。<br>然后输入<code>source /etc/profile</code>刷新环境变量，再输入<code>java -version</code>查看是否安装成功。<br><img src="https://img-blog.csdnimg.cn/20200324212948108.png" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/24/centos7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jdk8%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-c-c-实现linux系统中ls-ls-l命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/c-c-%E5%AE%9E%E7%8E%B0linux%E7%B3%BB%E7%BB%9F%E4%B8%ADls-ls-l%E5%91%BD%E4%BB%A4/">c/c++实现linux系统中ls,ls -l命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/12/c-c-%E5%AE%9E%E7%8E%B0linux%E7%B3%BB%E7%BB%9F%E4%B8%ADls-ls-l%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2020-03-12T06:14:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[](##c/c++实现linux系统中ls,ls -l命令)<br>问题：<br>仿写ls -l的功能（编写myls程序） ,参数通过命令行传入：<br>1、获取当前工作目录路径并对该目录实现遍历<br>2、仿ls -l以列表形式出当前工作目录下的所有文件（包括子目录)<br>需显示的文件属性有：<br>文件类型 权限 硬链接数 所有者用户名 所有者所在组用户名 文件大小 最后修改时间</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;//memcmp()</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;grp.h&gt;//getgrgid</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;//getcwd</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pwd.h&gt;//getpwuid</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ls</span><span class="params">(<span class="keyword">char</span> *dirpath)</span></span>;<span class="comment">//ls命令</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ls_l</span><span class="params">(<span class="keyword">char</span> *dirpath)</span></span>;<span class="comment">//ls -l命令</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> filename[<span class="number">100</span>][<span class="number">255</span>];</span><br><span class="line"><span class="keyword">int</span> filenum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> args,<span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> dir[<span class="number">255</span>];</span><br><span class="line">	getcwd(dir,<span class="number">255</span>);<span class="comment">//获取当前工作环境绝对路径,存入dir中</span></span><br><span class="line">	<span class="keyword">if</span>( args &gt; <span class="number">1</span>)&#123;<span class="comment">//ls -l命令</span></span><br><span class="line">		ls_l(dir);</span><br><span class="line">		<span class="comment">//cout&lt;&lt;"000";</span></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;<span class="comment">//ls命令</span></span><br><span class="line">		ls(dir);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ls</span><span class="params">(<span class="keyword">char</span> *dirpath)</span></span>&#123;</span><br><span class="line">	DIR *dir;<span class="comment">//用于存放opendir()成功时的返回值</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">file</span>;</span><span class="comment">//用于存放readir()的返回值</span></span><br><span class="line">	<span class="comment">/*函数DIR *opendir(const char *pathname)，用于打开pathname，</span></span><br><span class="line"><span class="comment">	若成功将返回值DIR类型的值，若失败，返回空指针*/</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">info</span>;</span><span class="comment">//用于存放文件信息</span></span><br><span class="line">	<span class="keyword">if</span>(!(dir = opendir(dirpath)))&#123;</span><br><span class="line">		<span class="comment">//打开目录失败</span></span><br><span class="line">		<span class="comment">//printf("error opendir %s\n",dirpath);</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"fail to read"</span>&lt;&lt;dirpath;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//读取opendir的返回值，其中d_name是文件名</span></span><br><span class="line">	<span class="keyword">while</span>((file = readdir(dir))!= <span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="comment">//文件无文件名只有后缀</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strncmp</span>(file-&gt;d_name, <span class="string">"."</span>, <span class="number">1</span>) == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="comment">//获取文件信息，存储在info中</span></span><br><span class="line">		stat(file-&gt;d_name,&amp;info);</span><br><span class="line">		<span class="comment">//打印文件名</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;file-&gt;d_name&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	closedir(dir);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">power</span><span class="params">(<span class="keyword">int</span> mode, <span class="keyword">char</span> str[])</span></span>&#123;<span class="comment">//权限解析</span></span><br><span class="line">    <span class="built_in">strcpy</span>(str, <span class="string">"----------"</span>);</span><br><span class="line">    <span class="keyword">if</span> (S_ISDIR(mode)) str[<span class="number">0</span>] = <span class="string">'d'</span>;</span><br><span class="line">    <span class="keyword">if</span> (S_ISCHR(mode)) str[<span class="number">0</span>] = <span class="string">'c'</span>;</span><br><span class="line">    <span class="keyword">if</span> (S_ISBLK(mode)) str[<span class="number">0</span>] = <span class="string">'b'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IRUSR)) str[<span class="number">1</span>] = <span class="string">'r'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IWUSR)) str[<span class="number">2</span>] = <span class="string">'w'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IXUSR)) str[<span class="number">3</span>] = <span class="string">'x'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IRGRP)) str[<span class="number">4</span>] = <span class="string">'r'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IWGRP)) str[<span class="number">5</span>] = <span class="string">'w'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IXGRP)) str[<span class="number">6</span>] = <span class="string">'x'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IROTH)) str[<span class="number">7</span>] = <span class="string">'r'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IWOTH)) str[<span class="number">8</span>] = <span class="string">'w'</span>;</span><br><span class="line">    <span class="keyword">if</span> ((mode &amp; S_IXOTH)) str[<span class="number">9</span>] = <span class="string">'x'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ls_l</span><span class="params">(<span class="keyword">char</span> *dirpath)</span></span>&#123;</span><br><span class="line">	DIR *dir;<span class="comment">//用于存放opendir()成功时的返回值</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">file</span>;</span><span class="comment">//用于存放readir()的返回值</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">info</span>;</span><span class="comment">//目录项描述结构体</span></span><br><span class="line">	<span class="keyword">if</span>(!(dir = opendir(dirpath)))&#123;</span><br><span class="line">		<span class="comment">//打开目录失败</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"fail to read"</span>&lt;&lt;dirpath;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">passwd</span> *<span class="title">userinfo</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">group</span> *<span class="title">groupinfo</span>;</span></span><br><span class="line">	<span class="keyword">while</span>((file = readdir(dir))!= <span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="comment">//文件无文件名只有后缀</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strncmp</span>(file-&gt;d_name, <span class="string">"."</span>, <span class="number">1</span>) == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">strcpy</span>(filename[filenum++],file-&gt;d_name);</span><br><span class="line">		<span class="comment">//获取文件信息，存储在info中</span></span><br><span class="line">		stat(file-&gt;d_name,&amp;info); </span><br><span class="line">		userinfo = getpwuid(info.st_uid);<span class="comment">//所有者用户名 </span></span><br><span class="line">		groupinfo = getgrgid(info.st_gid);<span class="comment">//所有者所在组用户名</span></span><br><span class="line">		<span class="keyword">char</span> pw[<span class="number">11</span>];</span><br><span class="line">		power(info.st_mode,pw);<span class="comment">//文件权限信息</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;pw&lt;&lt;<span class="string">" "</span> &lt;&lt;info.st_nlink&lt;&lt;<span class="string">" "</span>&lt;&lt; userinfo-&gt;pw_name&lt;&lt;<span class="string">" "</span>&lt;&lt;groupinfo-&gt;gr_name&lt;&lt;<span class="string">" "</span>&lt;&lt;info.st_size&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %.12s"</span>, <span class="number">4</span> + ctime(&amp;info.st_mtime));</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>&lt;&lt;file-&gt;d_name;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	closedir(dir);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果截图：<br><img src="https://img-blog.csdnimg.cn/20200311182912967.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="用到的函数、结构体："><a href="#用到的函数、结构体：" class="headerlink" title="用到的函数、结构体："></a>用到的函数、结构体：</h5><p><a href="https://baike.baidu.com/item/getcwd/4746955?fr=aladdin" target="_blank" rel="noopener">getcwd用法</a><br><a href="https://baike.baidu.com/item/strncmp/5522625?fr=aladdin" target="_blank" rel="noopener">strncmp用法</a><br><a href="https://baike.baidu.com/item/opendir/2912450?fr=aladdin" target="_blank" rel="noopener">opendir用法</a><br><a href="https://baike.baidu.com/item/closedir%28%29/3615125?fromtitle=closedir&fromid=6629998&fr=aladdin" target="_blank" rel="noopener">closedir用法</a><br><a href="https://blog.csdn.net/qq_40839779/article/details/82789217" target="_blank" rel="noopener">stat用法</a></p>
+<h6 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">S_ISDIR(st_mode)	<span class="comment">//是否是一个目录</span></span><br><span class="line">S_ISCHR(st_mode)	<span class="comment">//是否是一个字符设备</span></span><br><span class="line">S_ISBLK(st_mode)	<span class="comment">//是否是一个块设备</span></span><br><span class="line">S_IRUSR          	<span class="comment">//用户读权限</span></span><br><span class="line">S_IWUSR				<span class="comment">//用户写权限</span></span><br><span class="line">S_IRGRP 			<span class="comment">//用户组读权限</span></span><br><span class="line">S_IWGRP				<span class="comment">//用户组写权限</span></span><br><span class="line">S_IROTH				<span class="comment">//其他组都权限</span></span><br><span class="line">S_IWOTH				<span class="comment">//其他组写权限</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/12/c-c-%E5%AE%9E%E7%8E%B0linux%E7%B3%BB%E7%BB%9F%E4%B8%ADls-ls-l%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-div嵌套img时多出空白的原因及解决办法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/10/div%E5%B5%8C%E5%A5%97img%E6%97%B6%E5%A4%9A%E5%87%BA%E7%A9%BA%E7%99%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">div嵌套img时多出空白的原因及解决办法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/10/div%E5%B5%8C%E5%A5%97img%E6%97%B6%E5%A4%9A%E5%87%BA%E7%A9%BA%E7%99%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-03-10T14:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="###div嵌套img时多出空白的原因及解决办法"></a></p>
+<h5 id="产生空白的原因"><a href="#产生空白的原因" class="headerlink" title="产生空白的原因"></a>产生空白的原因</h5><p>img标签的display属性默认是inline，而对应的vertical-align属性的默认值是baseline。所以就会出现图片底部出现一片空白区域的现象。<a href="https://www.cnblogs.com/xuhaodong/p/basseline.html" target="_blank" rel="noopener">关于vertical-align:baseline</a></p>
+<h5 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h5><p>1、div{ font-size: 0}<br>2、img{ display: block}<br>3、img{ vertical-align:top;}<br>4、div{line-high:0}<br>5、如果img后还有其他兄弟标签，写代码时两标签之间不换行</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/10/div%E5%B5%8C%E5%A5%97img%E6%97%B6%E5%A4%9A%E5%87%BA%E7%A9%BA%E7%99%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-用c-c-语言程序实现Linux系统下的cp复制文件命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/02/%E7%94%A8c-c-%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4/">用c/c++语言程序实现Linux系统下的cp复制文件命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/02/%E7%94%A8c-c-%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2020-03-02T03:48:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="用c-c-语言程序实现Linux系统下的cp复制文件命令"><a href="#用c-c-语言程序实现Linux系统下的cp复制文件命令" class="headerlink" title="用c/c++语言程序实现Linux系统下的cp复制文件命令"></a>用c/c++语言程序实现Linux系统下的cp复制文件命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//复制文件</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">copy_file</span><span class="params">(<span class="keyword">char</span>* srcPath,<span class="keyword">char</span> *destPath)</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> Buf[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> count_read = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> fp_src_ltell = <span class="number">0</span>,fp_src_atell = <span class="number">0</span>;</span><br><span class="line">	FILE* fp_src = fopen(srcPath,<span class="string">"r"</span>);<span class="comment">//只读方式打开</span></span><br><span class="line">	FILE* fp_dst = fopen(destPath,<span class="string">"w"</span>);<span class="comment">//只写方式打开</span></span><br><span class="line">	<span class="keyword">if</span>(fp_dst ==<span class="literal">NULL</span> || fp_src == <span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"文件打开有问题\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(Buf,<span class="number">0</span>,<span class="keyword">sizeof</span>(Buf));</span><br><span class="line">		fp_src_ltell = ftell(fp_src); <span class="comment">//上一次文件指针位置</span></span><br><span class="line">		count_read = fread(Buf,<span class="keyword">sizeof</span>(Buf),<span class="number">1</span>,fp_src);</span><br><span class="line">		fp_src_atell = ftell(fp_src); <span class="comment">//当前文件指针位置</span></span><br><span class="line">		<span class="keyword">if</span>(count_read&lt;<span class="number">1</span>)&#123; <span class="comment">//异常或到达末尾结束</span></span><br><span class="line">			<span class="keyword">if</span>(feof(fp_src))&#123;</span><br><span class="line">				<span class="keyword">long</span> temp = fp_src_atell - fp_src_ltell;</span><br><span class="line">				fwrite(Buf,temp,<span class="number">1</span>,fp_dst); <span class="comment">//成功</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(ferror(fp_src))&#123;</span><br><span class="line">				perror(<span class="string">"fread error:"</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fwrite(Buf,<span class="keyword">sizeof</span>(Buf),<span class="number">1</span>,fp_dst);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span>&#123;  <span class="comment">//其中argv[1]为源文件  argv[2]为目标文件</span></span><br><span class="line">	<span class="keyword">if</span>(argc != <span class="number">3</span>)&#123;<span class="comment">//参数个数错误</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Usage srcfile destfile\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span>* srcPath=argv[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">char</span>* destPath=argv[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">if</span>(access(destPath,F_OK) == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"目标文件已存在\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	copy_file(srcPath,destPath);<span class="comment">//文件进行拷贝</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="https://img-blog.csdnimg.cn/20200302114646386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200302114656926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/02/%E7%94%A8c-c-%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue2-0使用keep-alive实现页面缓存" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">vue2.0使用keep-alive实现页面缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/" class="archive-article-date">
   	<time datetime="2020-02-16T07:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#vue2.0使用keep-alive实现页面缓存"></a></p>
+<h4 id="1-所有页面都缓存"><a href="#1-所有页面都缓存" class="headerlink" title="1. 所有页面都缓存"></a>1. 所有页面都缓存</h4><p>只需要在用到router-view的地方多加一个<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>标签即可<br><img src="https://img-blog.csdnimg.cn/20200216154410233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="2-缓存部分页面"><a href="#2-缓存部分页面" class="headerlink" title="2. 缓存部分页面"></a>2. 缓存部分页面</h4><p>（1）修改路由配置,需要缓存的（即切换页面后数据仍保留的）路由的keepAlive属性设置为true,不需要缓存的设置为false或者不设置（因为默认是false），如图：<br><img src="https://img-blog.csdnimg.cn/20200216154549264.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）修改引用路由的地方<img src="https://img-blog.csdnimg.cn/20200216154741669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue1-0的-dispatch、events与vue2-0的-emit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">vue2.0使用keep-alive实现页面缓存</a>
+      <a class="article-title" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">vue1.0的$dispatch、events与vue2.0的$emit</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/" class="archive-article-date">
+        
+        <a href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/" class="archive-article-date">
   	<time datetime="2020-02-14T07:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-14</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#vue1.0的&#36;dispatch、events与vue2.0的&#36;emit"></a><br>vue2.0弃用了vue1.0中的$dispatch,选择用&#36;emit向父组件传递数据，例子：</p>
+<h4 id="vue2-0"><a href="#vue2-0" class="headerlink" title="vue2.0"></a>vue2.0</h4><p>子组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ratingselect"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2)"</span>&gt;</span>&#123;&#123;desc.all&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"toggleContent"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    select(type) &#123;</span><br><span class="line">        <span class="comment">// more code</span></span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'ratingtype-select'</span>, type);</span><br><span class="line">        <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toggleContent() &#123;</span><br><span class="line">        <span class="comment">// more code</span></span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'content-toggle'</span>, <span class="keyword">this</span>.onlyContent);</span><br><span class="line">        <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;html</span><br><span class="line">&lt;ratingselect @ratingtype-select&#x3D;&quot;ratingtype_select&quot; </span><br><span class="line">			@content-toggle&#x3D;&quot;content_toggle&quot;&gt;&lt;&#x2F;ratingselect&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;javascript</span><br><span class="line">methods: &#123;</span><br><span class="line">	ratingtype_select(type) &#123;</span><br><span class="line">	   &#x2F;&#x2F; more code</span><br><span class="line">	&#125;,</span><br><span class="line">	content_toggle(onlyContent) &#123;</span><br><span class="line">	    &#x2F;&#x2F; more code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="vue1-0"><a href="#vue1-0" class="headerlink" title="vue1.0"></a>vue1.0</h4><p>子组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ratingselect"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2,$event)"</span>&gt;</span>&#123;&#123;desc.all&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"toggleContent($event)"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  select(type, event) &#123;</span><br><span class="line">      <span class="comment">// more code </span></span><br><span class="line">      <span class="keyword">this</span>.$dispatch(<span class="string">'ratingtype.select'</span>, type);</span><br><span class="line">      <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toggleContent(event) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">      <span class="keyword">this</span>.$dispatch(<span class="string">'content.toggle'</span>, <span class="keyword">this</span>.onlyContent);</span><br><span class="line">      <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>父组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ratingselect</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ratingselect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">events: &#123;</span><br><span class="line">   <span class="string">'ratingtype.select'</span>(type) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'content.toggle'</span>(onlyContent) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>综上所述，<br>在vue1.0中，子组件使用的是&#36;dispatch,父组件在events中接收子组件传递过来的事件和参数；<br>在vue2.0中，子组件使用的是&#36;emit,父组件直接在标签中用v-on(语法糖为@)来接收子组件传递过来的事件和参数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-transition在vue1-0和vue2-0中的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">vue1.0的$dispatch、events与vue2.0的$emit</a>
+      <a class="article-title" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">transition在vue1.0和vue2.0中的区别</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+        
+        <a href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
   	<time datetime="2020-02-12T13:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#transition在vue1.0和vue2.0中的区别"></a></p>
+<h3 id="1-html部分："><a href="#1-html部分：" class="headerlink" title="1. html部分："></a>1. html部分：</h3><h5 id="vue1-0"><a href="#vue1-0" class="headerlink" title="vue1.0"></a>vue1.0</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span> <span class="attr">transition</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="vue2-0"><a href="#vue2-0" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span>&gt;</span></span><br><span class="line">     	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-css部分"><a href="#2-css部分" class="headerlink" title="2. css部分"></a>2. css部分</h3><h4 id="vue1-0-1"><a href="#vue1-0-1" class="headerlink" title="vue1.0"></a>vue1.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span>: <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      &amp;<span class="selector-class">.fold-transition</span></span><br><span class="line">        <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span>, &amp;<span class="selector-class">.fold-leave</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
+<h4 id="vue2-0-1"><a href="#vue2-0-1" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span> <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span> <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      // transition all 0.5s</span><br><span class="line">      <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter-active</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-active</span></span><br><span class="line">        <span class="selector-tag">transition</span> <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        // transform translate3d(0, -100%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-to</span></span><br><span class="line">        <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue2中使用better-scroll插件实现滚动效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">transition在vue1.0和vue2.0中的区别</a>
+      <a class="article-title" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">vue2中使用better-scroll插件实现滚动效果</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/" class="archive-article-date">
+        
+        <a href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/" class="archive-article-date">
   	<time datetime="2020-02-10T09:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-10</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#vue2中使用better-scroll实现滚动效果"></a></p>
+<h4 id="1-npm安装插件"><a href="#1-npm安装插件" class="headerlink" title="1.npm安装插件"></a>1.npm安装插件</h4><p>(1)<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="noopener">到github上查看最新版本号</a><br>(2)在package.json中添加依赖<br><img src="https://img-blog.csdnimg.cn/20200210160243969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）执行<code>npm install</code>安装，安装成功后node_module目录下生成了better-scroll文件夹<br><img src="https://img-blog.csdnimg.cn/20200210165755185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="2-使用插件"><a href="#2-使用插件" class="headerlink" title="2.使用插件"></a>2.使用插件</h4><p>（1）在需要实现滚动效果的组件中引入插件<br><code>import BScroll from &#39;better-scroll&#39;;</code><br>（2）标记元素<br>使用ref属性来标记需要实现滚动效果的元素，然后在js中通过this.$refs获取该元素<br><img src="https://img-blog.csdnimg.cn/20200210165606153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）绑定dom<br><img src="https://img-blog.csdnimg.cn/20200210165643704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue-使用vue-resource" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">vue2中使用better-scroll插件实现滚动效果</a>
+      <a class="article-title" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">vue:使用vue-resource</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" class="archive-article-date">
+        
+        <a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" class="archive-article-date">
   	<time datetime="2020-02-06T06:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">vue:使用vue-resource</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#vue:使用vue-resource"></a></p>
+<h4 id="1-在package-json中添加依赖"><a href="#1-在package-json中添加依赖" class="headerlink" title="1. 在package.json中添加依赖"></a>1. 在package.json中添加依赖</h4><p>如图，后面的版本号根据自己喜欢的来写。<br><img src="https://img-blog.csdnimg.cn/20200206144039119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h4><p>执行<code>npm install</code>安装，完成后node_modules目录下生成了vue-resource文件夹<br><img src="https://img-blog.csdnimg.cn/20200206144321828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="3-导入插件并注册"><a href="#3-导入插件并注册" class="headerlink" title="3.导入插件并注册"></a>3.导入插件并注册</h4><p>将vue-resource导入到main.js中并全局注册<br><img src="https://img-blog.csdnimg.cn/2020020614442897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="4-发送请求"><a href="#4-发送请求" class="headerlink" title="4.发送请求"></a>4.发送请求</h4><p>这里要提前准备好接收请求的接口或者mock数据<br><img src="https://img-blog.csdnimg.cn/20200206144714186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt=""></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/" class="archive-article-date">
-  	<time datetime="2020-02-05T10:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-05</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">vue2:安装、配置、使用前端路由vue-router</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+    </nav>
+  
 
 
           </div>
@@ -364,9 +865,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
