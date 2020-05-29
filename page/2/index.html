@@ -166,6 +166,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux-make-makefile的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">Linux make/makefile的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-03-28T07:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="###make/makefile的使用"></a><br>需求：<br>编写程序，统计学生的成绩，包括成绩的最大值、最小值、总和以及平均值， 并要求利用make工程管理器进行编译。<br>（1）建立C程序 mymax.c<br>（2）建立C程序 mymin.c<br>（3）建立C程序 mysum.c<br>（4）建立C程序 myavg.c<br>（5）建立C程序 my.h<br>（6）建立C程序 mymain.c<br>（7）建立静态库libmylib.a<br>（8）编译mymain.c程序<br>（9）执行mymain程序</p>
+<h5 id="1-目录："><a href="#1-目录：" class="headerlink" title="1.目录："></a>1.目录：</h5><p><img src="https://img-blog.csdnimg.cn/20200328151452409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="2-编写-c和-h文件"><a href="#2-编写-c和-h文件" class="headerlink" title="2.编写.c和.h文件"></a>2.编写.c和.h文件</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMax.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">max</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;<span class="built_in">max</span>)&#123;</span><br><span class="line">			<span class="built_in">max</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"maximum is %d\n"</span>,<span class="built_in">max</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMin.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">min</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&lt;<span class="built_in">min</span>)&#123;</span><br><span class="line">			<span class="built_in">min</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"minimum is %d\n"</span>,<span class="built_in">min</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mySum.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Sum is %d\n"</span>,sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myAvg.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> avg=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	avg=(<span class="keyword">float</span>)sum/(<span class="keyword">float</span>)num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Average is "</span>&lt;&lt;avg&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//my.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MY_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_H</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myMain.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"my.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> scores[<span class="number">10000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the number of students:"</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the scores£º"</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;scores[i];</span><br><span class="line">	&#125;</span><br><span class="line">	myMax(scores,num);</span><br><span class="line">	myMin(scores,num);</span><br><span class="line">	mySum(scores,num);</span><br><span class="line">	myAvg(scores,num);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-编写makefile文件"><a href="#3-编写makefile文件" class="headerlink" title="3.编写makefile文件"></a>3.编写makefile文件</h5><p>格式：（注意：命令command前需要有tab）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">		command</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200328151551684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="4-编译执行"><a href="#4-编译执行" class="headerlink" title="4.编译执行"></a>4.编译执行</h5><p><img src="https://img-blog.csdnimg.cn/20200328151734930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-centos7中用hadoop执行java文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -742,73 +816,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-使用vue-resource" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">vue:使用vue-resource</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" class="archive-article-date">
-  	<time datetime="2020-02-06T06:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="#vue:使用vue-resource"></a></p>
-<h4 id="1-在package-json中添加依赖"><a href="#1-在package-json中添加依赖" class="headerlink" title="1. 在package.json中添加依赖"></a>1. 在package.json中添加依赖</h4><p>如图，后面的版本号根据自己喜欢的来写。<br><img src="https://img-blog.csdnimg.cn/20200206144039119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h4><p>执行<code>npm install</code>安装，完成后node_modules目录下生成了vue-resource文件夹<br><img src="https://img-blog.csdnimg.cn/20200206144321828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="3-导入插件并注册"><a href="#3-导入插件并注册" class="headerlink" title="3.导入插件并注册"></a>3.导入插件并注册</h4><p>将vue-resource导入到main.js中并全局注册<br><img src="https://img-blog.csdnimg.cn/2020020614442897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="4-发送请求"><a href="#4-发送请求" class="headerlink" title="4.发送请求"></a>4.发送请求</h4><p>这里要提前准备好接收请求的接口或者mock数据<br><img src="https://img-blog.csdnimg.cn/20200206144714186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">展开全文 >></a>
         </p>
       
 

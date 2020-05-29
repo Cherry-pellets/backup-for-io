@@ -641,6 +641,72 @@
 
 
   
+    <article id="post-vue：v-text、v-html与插值表达式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/22/vue%EF%BC%9Av-text%E3%80%81v-html%E4%B8%8E%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">vue：v-text、v-html与插值表达式的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/22/vue%EF%BC%9Av-text%E3%80%81v-html%E4%B8%8E%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-22T07:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="vue：v-text、v-html与插值表达式的区别"><a href="#vue：v-text、v-html与插值表达式的区别" class="headerlink" title="vue：v-text、v-html与插值表达式的区别"></a>vue：v-text、v-html与插值表达式的区别</h5><p>v-html: 会覆盖原有的内容,并且会解析数据中的html；<br>v-text: 会覆盖原有的内容,并且不会解析数据中的html；  </p>
+<figure class="highlight plain"><figcaption><span>将指定的数据插入到指定位置,不覆盖原有的内容，并且不会解析数据中的html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;!--v-html: 会覆盖原有的内容,并且会解析html--&gt;</span><br><span class="line">    &lt;p v-html&#x3D;&quot;html&quot;&gt;1&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p v-html&#x3D;&quot;text&quot;&gt;1&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;!--v-text: 会覆盖原有的内容,并且不会解析html--&gt;</span><br><span class="line">    &lt;p v-text&#x3D;&quot;html&quot;&gt;2&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p v-text&#x3D;&quot;text&quot;&gt;2&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;!--&#123;&#123;&#125;&#125;插值: 将指定的数据插入到指定位置,不覆盖原有的内容，并且不会解析html--&gt;</span><br><span class="line">    &lt;p&gt;3 &#123;&#123;html&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p&gt;3 &#123;&#123;text&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;..&#x2F;js&#x2F;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    let vue &#x3D; new Vue(&#123;</span><br><span class="line">      el:&#39;#app&#39;,</span><br><span class="line">      data:&#123;</span><br><span class="line">        html:&#39;&lt;span&gt;标签内容&lt;&#x2F;span&gt;&#39;,</span><br><span class="line">        text:&#39;这里是text&#39;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200422154218496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/22/vue%EF%BC%9Av-text%E3%80%81v-html%E4%B8%8E%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-前端面试题：正则表达式以及replace的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -747,80 +813,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux-make-makefile的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">Linux make/makefile的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-03-28T07:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="###make/makefile的使用"></a><br>需求：<br>编写程序，统计学生的成绩，包括成绩的最大值、最小值、总和以及平均值， 并要求利用make工程管理器进行编译。<br>（1）建立C程序 mymax.c<br>（2）建立C程序 mymin.c<br>（3）建立C程序 mysum.c<br>（4）建立C程序 myavg.c<br>（5）建立C程序 my.h<br>（6）建立C程序 mymain.c<br>（7）建立静态库libmylib.a<br>（8）编译mymain.c程序<br>（9）执行mymain程序</p>
-<h5 id="1-目录："><a href="#1-目录：" class="headerlink" title="1.目录："></a>1.目录：</h5><p><img src="https://img-blog.csdnimg.cn/20200328151452409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h5 id="2-编写-c和-h文件"><a href="#2-编写-c和-h文件" class="headerlink" title="2.编写.c和.h文件"></a>2.编写.c和.h文件</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMax.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">max</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;<span class="built_in">max</span>)&#123;</span><br><span class="line">			<span class="built_in">max</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"maximum is %d\n"</span>,<span class="built_in">max</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myMin.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">min</span>=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&lt;<span class="built_in">min</span>)&#123;</span><br><span class="line">			<span class="built_in">min</span>=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"minimum is %d\n"</span>,<span class="built_in">min</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mySum.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Sum is %d\n"</span>,sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myAvg.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> avg=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	avg=(<span class="keyword">float</span>)sum/(<span class="keyword">float</span>)num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Average is "</span>&lt;&lt;avg&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//my.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MY_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_H</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mySum</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAvg</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//myMain.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"my.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> scores[<span class="number">10000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the number of students:"</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"input the scores£º"</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;scores[i];</span><br><span class="line">	&#125;</span><br><span class="line">	myMax(scores,num);</span><br><span class="line">	myMin(scores,num);</span><br><span class="line">	mySum(scores,num);</span><br><span class="line">	myAvg(scores,num);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="3-编写makefile文件"><a href="#3-编写makefile文件" class="headerlink" title="3.编写makefile文件"></a>3.编写makefile文件</h5><p>格式：（注意：命令command前需要有tab）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">		command</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200328151551684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h5 id="4-编译执行"><a href="#4-编译执行" class="headerlink" title="4.编译执行"></a>4.编译执行</h5><p><img src="https://img-blog.csdnimg.cn/20200328151734930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
         </p>
       
 
