@@ -167,6 +167,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hadoop中SequenceFile的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/30/hadoop%E4%B8%ADSequenceFile%E7%9A%84%E4%BD%BF%E7%94%A8/">hadoop中SequenceFile的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/30/hadoop%E4%B8%ADSequenceFile%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-05-30T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="序列文件-SequenceFile"><a href="#序列文件-SequenceFile" class="headerlink" title="序列文件 SequenceFile"></a>序列文件 SequenceFile</h6><p>SequenceFile的每条记录是可序列化的字符数组；<br>存储结构上，SequenceFile由一个Header后跟多条Record组成；<br> Header：<br>包含了Key classname，Value classname，存储压缩算法，用户自定义元数据等信息；还包含了一些同步标识，用于快速定位到记录的边界。<br>Record:<br>每条Record以键值对的方式进行存储；记录的长度、Key的长度、Key值和Value值，并且Value值的结构取决于该记录是否被压缩。</p>
+<h6 id="序列化文件的3种类型"><a href="#序列化文件的3种类型" class="headerlink" title="序列化文件的3种类型"></a>序列化文件的3种类型</h6><p>未压缩<br>记录(Record)压缩<br>块(Block)压缩<br><img src="https://img-blog.csdnimg.cn/20200530194846759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="SequenceFile的作用"><a href="#SequenceFile的作用" class="headerlink" title="SequenceFile的作用"></a>SequenceFile的作用</h6><p>可以作为小文件的容器，封装小文件；<br>用于存储键值对的二进制文件格式；<br>支持压缩；<br>保持可分割（可拆分）（拆分标志）；<br>支持二进制的键和值；<br>在HDFS中获得更高的存储效率；<br>用于链接多个Hadoop作业；</p>
+<h6 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h6><p>1、    使用随机数生成以（整数，字符串）为（key，Value）的文本文件，文件的大小内容任意，文件数量不少于100个；<br>2、使用SequenceFile对以上文件进行封装成一个独立文件，压缩格式任意；<br>3、对于2生成的独立文件，可以实现以下的三种方式的查询：<br>        3.1）给出文件名，可以从序列文件整体读取文件并存储到指定的位置；<br>        3.2）给出某个整数的key，可以读取所有该key的数据，并给出所在文件的名称（可以输出到控制台）<br>        3.3）给出文件名和整数的key，可以读取该文件中的对应key的数据（可以输出到控制台）</p>
+<h6 id="1、使用随机数生成以（整数，字符串）为（key，Value）的文本文件"><a href="#1、使用随机数生成以（整数，字符串）为（key，Value）的文本文件" class="headerlink" title="1、使用随机数生成以（整数，字符串）为（key，Value）的文本文件"></a>1、使用随机数生成以（整数，字符串）为（key，Value）的文本文件</h6><p>程序代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedOutputStream;  </span><br><span class="line"><span class="keyword">import</span> java.io.File;  </span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;  </span><br><span class="line"><span class="keyword">import</span> java.io.PrintStream;  </span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;  </span><br><span class="line"><span class="keyword">import</span> java.util.List;  </span><br><span class="line"><span class="keyword">import</span> java.util.Random;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RadnomTxtFileCreator</span> </span>&#123; <span class="comment">// lab 5-1  </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">long</span> start=System.currentTimeMillis();  </span><br><span class="line">        <span class="keyword">int</span> numOfFiles = <span class="number">100</span>;  </span><br><span class="line">        <span class="keyword">int</span> numOfRecorders = <span class="number">100000</span>;  </span><br><span class="line">        <span class="comment">//本地文件位置，修改合適的位置  </span></span><br><span class="line">        String uri = <span class="string">"src/hdfs/lab5/files"</span>;  </span><br><span class="line">        FileOutputStream fout = <span class="keyword">null</span>;  </span><br><span class="line">        Random ra = <span class="keyword">new</span> Random();  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= numOfFiles; i++) &#123;  </span><br><span class="line">                System.out.println(<span class="string">"writing file#"</span>+i);  </span><br><span class="line">                fout = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(uri + <span class="string">"\\file"</span> + i));  </span><br><span class="line">                List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();  </span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; numOfRecorders; j++)  </span><br><span class="line">                    list.add(ra.nextInt(numOfRecorders) + <span class="number">1</span> + <span class="string">"\t"</span> + <span class="string">"the recorder #"</span> + j + <span class="string">" in file#"</span> + i);  </span><br><span class="line">                PrintStream pStream = <span class="keyword">new</span> PrintStream(<span class="keyword">new</span> BufferedOutputStream(fout));  </span><br><span class="line">                <span class="keyword">for</span> (String str : list) &#123;  </span><br><span class="line">                    pStream.println(str);  </span><br><span class="line">                &#125;  </span><br><span class="line">                pStream.close();  </span><br><span class="line">                fout.close();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">finally</span> &#123;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">long</span> end=System.currentTimeMillis();  </span><br><span class="line">        System.out.println(<span class="string">"write "</span>+numOfFiles+<span class="string">" files successfully in "</span>+ (end-start)+<span class="string">"ms"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：生成100个随机文件<br><img src="https://img-blog.csdnimg.cn/20200530194008870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200530194040238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="2、使用SequenceFile对以上文件进行封装成一个独立文件"><a href="#2、使用SequenceFile对以上文件进行封装成一个独立文件" class="headerlink" title="2、使用SequenceFile对以上文件进行封装成一个独立文件"></a>2、使用SequenceFile对以上文件进行封装成一个独立文件</h6><p>程序代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SmallFilesToSequenceFile</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">        ID key = <span class="keyword">new</span> ID();  </span><br><span class="line">        Text value = <span class="keyword">new</span> Text();  </span><br><span class="line">        String name, s;  </span><br><span class="line">        String[] s1;  </span><br><span class="line">        SequenceFile.Writer writer=SequenceFile.createWriter(  </span><br><span class="line">                fs, conf,<span class="keyword">new</span> Path(sequencefileDir), key.getClass(), value.getClass(), SequenceFile.CompressionType.NONE);  </span><br><span class="line">        FileStatus[] files=fs.listStatus(<span class="keyword">new</span> Path(<span class="string">"src/hdfs/lab5/files"</span>));  </span><br><span class="line">        <span class="keyword">for</span>(FileStatus file : files)&#123;  </span><br><span class="line">            name=file.getPath().getName();  </span><br><span class="line">            System.out.println(<span class="string">"封装"</span>+name);  </span><br><span class="line">            FSDataInputStream in=fs.open(file.getPath());  </span><br><span class="line">            key.setName(name);  </span><br><span class="line">            <span class="keyword">while</span> ((s=in.readLine())!=<span class="keyword">null</span>)&#123;  </span><br><span class="line">                s1=s.split(<span class="string">"\t"</span>);  </span><br><span class="line">                key.setKey(Integer.parseInt(s1[<span class="number">0</span>]));  </span><br><span class="line">                value.set(s1[<span class="number">1</span>]);  </span><br><span class="line">                writer.append(key,value);  </span><br><span class="line">            &#125;  </span><br><span class="line">            in.close();  </span><br><span class="line">        &#125;  </span><br><span class="line">        writer.close();  </span><br><span class="line">        System.out.println(<span class="string">"文件封装完成"</span>);  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200530194116686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="3-给出文件名，可以从序列文件整体读取文件并存储到指定的位置"><a href="#3-给出文件名，可以从序列文件整体读取文件并存储到指定的位置" class="headerlink" title="3.给出文件名，可以从序列文件整体读取文件并存储到指定的位置"></a>3.给出文件名，可以从序列文件整体读取文件并存储到指定的位置</h6><p>程序代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">searchByFileName</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">        String ouputDir = <span class="string">"src/hdfs/lab5/sequenceFile/output.txt"</span>;  </span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);  </span><br><span class="line">        System.out.println(<span class="string">"请输入文件名："</span>);  </span><br><span class="line">        String name=sc.nextLine();  </span><br><span class="line">        SequenceFile.Reader reader=<span class="keyword">new</span> SequenceFile.Reader(fs,<span class="keyword">new</span> Path(sequencefileDir),conf);  </span><br><span class="line">        Writable key = (Writable) ReflectionUtils.newInstance(reader.getKeyClass(), conf);  </span><br><span class="line">        Writable value = (Writable) ReflectionUtils.newInstance(reader.getValueClass(), conf);  </span><br><span class="line">        <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;  </span><br><span class="line">        DataOutputStream out = <span class="keyword">null</span>;  </span><br><span class="line">        <span class="keyword">while</span> (reader.next(key,value))&#123;  </span><br><span class="line">            <span class="keyword">if</span>(((ID)key).getName().equals(name))&#123;  </span><br><span class="line">                <span class="keyword">if</span>(!flag)&#123;  </span><br><span class="line">                    <span class="keyword">new</span> File(ouputDir).mkdirs();  </span><br><span class="line">                    out= <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(ouputDir));  </span><br><span class="line">                    flag=<span class="keyword">true</span>;  </span><br><span class="line">                &#125;  </span><br><span class="line">                System.out.println(((ID) key).getKey()+<span class="string">"\t"</span>+value);  </span><br><span class="line">                out.writeBytes(((ID) key).getKey()+<span class="string">"\t"</span>+value+<span class="string">"\n"</span>);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        out.close();  </span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="keyword">true</span>) &#123;  </span><br><span class="line">            System.out.println(name+<span class="string">"保存成功"</span>);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            System.out.println(name+<span class="string">"保存失败"</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">        reader.close();  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200530194146541.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200530194159182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="4、-给出某个整数的key，可以读取所有该key的数据，并给出所在文件的名称（可以输出到控制台）"><a href="#4、-给出某个整数的key，可以读取所有该key的数据，并给出所在文件的名称（可以输出到控制台）" class="headerlink" title="4、    给出某个整数的key，可以读取所有该key的数据，并给出所在文件的名称（可以输出到控制台）"></a>4、    给出某个整数的key，可以读取所有该key的数据，并给出所在文件的名称（可以输出到控制台）</h6><p>程序代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">searchByKey</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);  </span><br><span class="line">        System.out.println(<span class="string">"请输入key："</span>);  </span><br><span class="line">        <span class="keyword">int</span> i=sc.nextInt();  </span><br><span class="line">        SequenceFile.Reader reader=<span class="keyword">new</span> SequenceFile.Reader(fs,<span class="keyword">new</span> Path(sequencefileDir),conf);  </span><br><span class="line">        Writable key = (Writable) ReflectionUtils.newInstance(reader.getKeyClass(), conf);  </span><br><span class="line">        Writable value = (Writable) ReflectionUtils.newInstance(reader.getValueClass(), conf);  </span><br><span class="line">        <span class="keyword">int</span> n=<span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">while</span> (reader.next(key,value))&#123;  </span><br><span class="line">            <span class="keyword">if</span>(((ID)key).getKey()==i)&#123;  </span><br><span class="line">                System.out.println(((ID) key).getName()+<span class="string">":\n"</span>+value);  </span><br><span class="line">                n++;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        reader.close();  </span><br><span class="line">        System.out.println(<span class="string">"共"</span>+n+<span class="string">"条记录！"</span>);  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200530194307831.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="5-给出文件名和整数的key，可以读取该文件中的对应key的数据（可以输出到控制台）"><a href="#5-给出文件名和整数的key，可以读取该文件中的对应key的数据（可以输出到控制台）" class="headerlink" title="5.给出文件名和整数的key，可以读取该文件中的对应key的数据（可以输出到控制台）"></a>5.给出文件名和整数的key，可以读取该文件中的对应key的数据（可以输出到控制台）</h6><p>程序代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">searchValue</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);  </span><br><span class="line">        System.out.println(<span class="string">"请输入文件名："</span>);  </span><br><span class="line">        String name=sc.nextLine();  </span><br><span class="line">        System.out.println(<span class="string">"请输入key："</span>);  </span><br><span class="line">        <span class="keyword">int</span> i=sc.nextInt();  </span><br><span class="line">        SequenceFile.Reader reader=<span class="keyword">new</span> SequenceFile.Reader(fs,<span class="keyword">new</span> Path(sequencefileDir),conf);  </span><br><span class="line">        Writable key = (Writable) ReflectionUtils.newInstance(reader.getKeyClass(), conf);  </span><br><span class="line">        Writable value = (Writable) ReflectionUtils.newInstance(reader.getValueClass(), conf);  </span><br><span class="line">        ID id=<span class="keyword">new</span> ID();  </span><br><span class="line">        id.setKey(i);  </span><br><span class="line">        id.setName(name);  </span><br><span class="line">        <span class="keyword">while</span> (reader.next(key,value))&#123;  </span><br><span class="line">            <span class="keyword">if</span>(((ID)key).equals(id))&#123;  </span><br><span class="line">                System.out.println(name+<span class="string">"\t"</span>+i+<span class="string">"\t"</span>+value);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        reader.close();  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/202005301943300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200530194321170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/30/hadoop%E4%B8%ADSequenceFile%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-webpack定义环境变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -745,75 +826,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数值转换：parseInt、parseFloat、Number的用法和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">数值转换：parseInt、parseFloat、Number的用法和区别</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-04-16T14:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Number（）"><a href="#1-Number（）" class="headerlink" title="1.Number（）"></a>1.Number（）</h5><p>Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。<br>Number()的转换规则：</p>
-<figure class="highlight plain"><figcaption><span>num </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0</span><br><span class="line">若x为null:num&#x3D;0；</span><br><span class="line">若x为undefined:num&#x3D;NaN;</span><br><span class="line">若x为数值，直接返回；</span><br><span class="line">若x为字符串：</span><br><span class="line">			（1）字符串中只包含数字（或前面带负号）：忽略前导0（如果有的话）返回，如&#96;&#96;&#96;let num &#x3D; Number(&quot;0012&quot;); &#x2F;&#x2F; num &#x3D; 12</span><br></pre></td></tr></table></figure>
-<pre><code>（2）字符串中包含有效的浮点数：忽略前导0（如果有的话）返回浮点数，如```let num = Number(&quot;001.23&quot;); // num = 1.23```
-（3）字符串为空，即x=&quot;&quot;：num=0
-（4）字符串包含十六进制格式：转换为相同大小的十进制数，如```let num = Number(&quot;0xA&quot;); // num = 10```
-（5）其他情况：num = NaN            </code></pre><h5 id="2-parseInt"><a href="#2-parseInt" class="headerlink" title="2.parseInt()"></a>2.parseInt()</h5><p>parseInt()专门用于把字符串转换成数值。<br>用法1：<code>let num = parseInt(x);</code><br>在进行转换时首先找到x中第一个非空格字符（也就是会忽略字符串中前面的空格，如<code>x = &quot;    123e&quot;</code>），如果第一个字符不是数字或者负号，num = NaN;只有一个参数的parseInt不识别八进制数，除非用用法2。<br>用法2：<code>let num = parseInt(&quot;0xAF&quot;,16)  // num = 175</code>第二个参数代表16进制</p>
-<h5 id="3-parseFloat"><a href="#3-parseFloat" class="headerlink" title="3.parseFloat()"></a>3.parseFloat()</h5><p>parseFloat与parseInt类似，专门用于把字符串转换成浮点数值。<br>注意点：<br>（1）如果字符串中有多个小数点，只有第一个有效，其他的被忽略，如<code>let num = parseFloat(&quot;1.1314.520&quot;); // num = 1.1314</code><br>（2）parseFloat只解析十进制数，十六进制格式会被转换成0，如<code>let num = parseFloat(&quot;0xA&quot;); // num = 0</code><br>（3）如果字符串包含的是可解析的整数，函数会返回整数，没有小数点，如<code>let num = parseFloat(&quot;13432key&quot;); // num = 13432</code></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 

@@ -167,6 +167,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数值转换：parseInt、parseFloat、Number的用法和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">数值转换：parseInt、parseFloat、Number的用法和区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-16T14:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Number（）"><a href="#1-Number（）" class="headerlink" title="1.Number（）"></a>1.Number（）</h5><p>Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。<br>Number()的转换规则：</p>
+<figure class="highlight plain"><figcaption><span>num </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0</span><br><span class="line">若x为null:num&#x3D;0；</span><br><span class="line">若x为undefined:num&#x3D;NaN;</span><br><span class="line">若x为数值，直接返回；</span><br><span class="line">若x为字符串：</span><br><span class="line">			（1）字符串中只包含数字（或前面带负号）：忽略前导0（如果有的话）返回，如&#96;&#96;&#96;let num &#x3D; Number(&quot;0012&quot;); &#x2F;&#x2F; num &#x3D; 12</span><br></pre></td></tr></table></figure>
+<pre><code>（2）字符串中包含有效的浮点数：忽略前导0（如果有的话）返回浮点数，如```let num = Number(&quot;001.23&quot;); // num = 1.23```
+（3）字符串为空，即x=&quot;&quot;：num=0
+（4）字符串包含十六进制格式：转换为相同大小的十进制数，如```let num = Number(&quot;0xA&quot;); // num = 10```
+（5）其他情况：num = NaN            </code></pre><h5 id="2-parseInt"><a href="#2-parseInt" class="headerlink" title="2.parseInt()"></a>2.parseInt()</h5><p>parseInt()专门用于把字符串转换成数值。<br>用法1：<code>let num = parseInt(x);</code><br>在进行转换时首先找到x中第一个非空格字符（也就是会忽略字符串中前面的空格，如<code>x = &quot;    123e&quot;</code>），如果第一个字符不是数字或者负号，num = NaN;只有一个参数的parseInt不识别八进制数，除非用用法2。<br>用法2：<code>let num = parseInt(&quot;0xAF&quot;,16)  // num = 175</code>第二个参数代表16进制</p>
+<h5 id="3-parseFloat"><a href="#3-parseFloat" class="headerlink" title="3.parseFloat()"></a>3.parseFloat()</h5><p>parseFloat与parseInt类似，专门用于把字符串转换成浮点数值。<br>注意点：<br>（1）如果字符串中有多个小数点，只有第一个有效，其他的被忽略，如<code>let num = parseFloat(&quot;1.1314.520&quot;); // num = 1.1314</code><br>（2）parseFloat只解析十进制数，十六进制格式会被转换成0，如<code>let num = parseFloat(&quot;0xA&quot;); // num = 0</code><br>（3）如果字符串包含的是可解析的整数，函数会返回整数，没有小数点，如<code>let num = parseFloat(&quot;13432key&quot;); // num = 13432</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux-make-makefile的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -752,71 +821,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue2中使用better-scroll插件实现滚动效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">vue2中使用better-scroll插件实现滚动效果</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/" class="archive-article-date">
-  	<time datetime="2020-02-10T09:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="#vue2中使用better-scroll实现滚动效果"></a></p>
-<h4 id="1-npm安装插件"><a href="#1-npm安装插件" class="headerlink" title="1.npm安装插件"></a>1.npm安装插件</h4><p>(1)<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="noopener">到github上查看最新版本号</a><br>(2)在package.json中添加依赖<br><img src="https://img-blog.csdnimg.cn/20200210160243969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）执行<code>npm install</code>安装，安装成功后node_module目录下生成了better-scroll文件夹<br><img src="https://img-blog.csdnimg.cn/20200210165755185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-使用插件"><a href="#2-使用插件" class="headerlink" title="2.使用插件"></a>2.使用插件</h4><p>（1）在需要实现滚动效果的组件中引入插件<br><code>import BScroll from &#39;better-scroll&#39;;</code><br>（2）标记元素<br>使用ref属性来标记需要实现滚动效果的元素，然后在js中通过this.$refs获取该元素<br><img src="https://img-blog.csdnimg.cn/20200210165606153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）绑定dom<br><img src="https://img-blog.csdnimg.cn/20200210165643704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">展开全文 >></a>
         </p>
       
 
