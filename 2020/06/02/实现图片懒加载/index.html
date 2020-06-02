@@ -7,15 +7,18 @@
   <meta name="baidu-site-verification" content="74KxFPX3Fh" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.huangjinxiu.top">
-  <title>Archives | Cherry-pellets的博客</title>
+  <title>实现图片懒加载 | Cherry-pellets的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cherry-pellets的博客">
-<meta property="og:url" content="http://blog.huangjinxiu.top/archives/page/2/index.html">
+  <meta name="description" content="计算图片是否进入可视区 实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现图片懒加载">
+<meta property="og:url" content="http://blog.huangjinxiu.top/2020/06/02/%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Cherry-pellets的博客">
-<meta property="og:description" content="前端">
+<meta property="og:description" content="计算图片是否进入可视区 实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &amp;l">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020060213553172.png">
+<meta property="article:published_time" content="2020-06-02T06:08:33.000Z">
+<meta property="article:modified_time" content="2020-06-02T06:10:21.096Z">
 <meta property="article:author" content="Cherry-pellets">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="前端">
@@ -26,6 +29,7 @@
 <meta property="article:tag" content="html5">
 <meta property="article:tag" content="css3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020060213553172.png">
   
     <link rel="alternative" href="/atom.xml" title="Cherry-pellets的博客" type="application/atom+xml">
   
@@ -165,295 +169,155 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-实现图片懒加载" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      实现图片懒加载
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
+  	<time datetime="2020-06-02T06:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="计算图片是否进入可视区"><a href="#计算图片是否进入可视区" class="headerlink" title="计算图片是否进入可视区"></a>计算图片是否进入可视区</h6><p><img src="https://img-blog.csdnimg.cn/2020060213553172.png" alt="在这里插入图片描述"></p>
+<h6 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;图片懒加载&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;style&gt;</span></span><br><span class="line"><span class="regexp">        img &#123;</span></span><br><span class="line"><span class="regexp">            display: block;</span></span><br><span class="line"><span class="regexp">            width: 300px;</span></span><br><span class="line"><span class="regexp">            height: 300px;</span></span><br><span class="line"><span class="regexp">            margin-bottom: 20px;</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>style&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img data-src="./im</span>ages/cherry.jpg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/circle_copy.svg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/person.png<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/circle.svg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/person_copy.png<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/kiss.jpg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/star.png<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/kiss_copy.jpg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/star_copy.png<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;img data-src="</span>./images/cherry_copy.jpg<span class="string">" alt="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">  var imgs = document.querySelectorAll('img');</span></span><br><span class="line"><span class="string">  //offsetTop是元素与offsetParent的距离，循环获取直到页面顶部</span></span><br><span class="line"><span class="string">  function offsetH(e) &#123;</span></span><br><span class="line"><span class="string">    var height = e.offsetTop;</span></span><br><span class="line"><span class="string">    while(e = e.offsetParent) &#123;</span></span><br><span class="line"><span class="string">      height += e.offsetTop;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    return height;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  function lazyLoad(imgs) &#123;</span></span><br><span class="line"><span class="string">    function getViewport() &#123;  // 兼容性检查得出可视区高度</span></span><br><span class="line"><span class="string">        let height;</span></span><br><span class="line"><span class="string">        if(window.innerHeight)&#123; // IE9以上</span></span><br><span class="line"><span class="string">            height = window.innerHeight;</span></span><br><span class="line"><span class="string">        &#125;else if(document.compatMode === "</span>BackCompat<span class="string">")&#123; // 混杂模式</span></span><br><span class="line"><span class="string">            height = document.body.clientHeight;</span></span><br><span class="line"><span class="string">        &#125;else&#123;  // IE9以下标准模式</span></span><br><span class="line"><span class="string">            height = document.documentElement.clientHeight;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        return height;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    var viewportH =getViewport();</span></span><br><span class="line"><span class="string">    var scrollH = document.documentElement.scrollTop || document.body.scrollTop;</span></span><br><span class="line"><span class="string">    for (var i = 0; i &lt; imgs.length; i++) &#123;</span></span><br><span class="line"><span class="string">      if (viewportH + scrollH &gt; offsetH(imgs[i])) &#123;</span></span><br><span class="line"><span class="string">        imgs[i].src = imgs[i].getAttribute('data-src');</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">   // 滚动条滚动时懒加载 </span></span><br><span class="line"><span class="string">  window.onload = window.onscroll = function () &#123; </span></span><br><span class="line"><span class="string">    lazyLoad(imgs);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-04-21T13:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/">前端面试题：正则表达式以及replace的使用</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://blog.huangjinxiu.top/2020/06/02/%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-04-16T14:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/30/hadoop%E4%B8%ADSequenceFile%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop中SequenceFile的使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">数值转换：parseInt、parseFloat、Number的用法和区别</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-03-28T07:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/">Linux make/makefile的使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/25/centos7%E4%B8%AD%E7%94%A8hadoop%E6%89%A7%E8%A1%8Cjava%E6%96%87%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-03-25T08:16:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/25/centos7%E4%B8%AD%E7%94%A8hadoop%E6%89%A7%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">centos7中用hadoop执行java文件</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/24/centos7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jdk8%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="archive-article-date">
-  	<time datetime="2020-03-24T13:34:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/24/centos7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jdk8%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">centos7环境下安装jdk8以及配置环境变量</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/12/c-c-%E5%AE%9E%E7%8E%B0linux%E7%B3%BB%E7%BB%9F%E4%B8%ADls-ls-l%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-03-12T06:14:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/12/c-c-%E5%AE%9E%E7%8E%B0linux%E7%B3%BB%E7%BB%9F%E4%B8%ADls-ls-l%E5%91%BD%E4%BB%A4/">c/c++实现linux系统中ls,ls -l命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/10/div%E5%B5%8C%E5%A5%97img%E6%97%B6%E5%A4%9A%E5%87%BA%E7%A9%BA%E7%99%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-10T14:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/10/div%E5%B5%8C%E5%A5%97img%E6%97%B6%E5%A4%9A%E5%87%BA%E7%A9%BA%E7%99%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">div嵌套img时多出空白的原因及解决办法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/02/%E7%94%A8c-c-%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-03-02T03:48:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/02/%E7%94%A8c-c-%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4/">用c/c++语言程序实现Linux系统下的cp复制文件命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/" class="archive-article-date">
-  	<time datetime="2020-02-16T07:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">vue2.0使用keep-alive实现页面缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/" class="archive-article-date">
-  	<time datetime="2020-02-14T07:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">vue1.0的$dispatch、events与vue2.0的$emit</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -478,8 +342,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
