@@ -7,15 +7,18 @@
   <meta name="baidu-site-verification" content="74KxFPX3Fh" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.huangjinxiu.top">
-  <title>Cherry-pellets的博客</title>
+  <title>shell脚本参数超过9个时的处理 | Cherry-pellets的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cherry-pellets的博客">
-<meta property="og:url" content="http://blog.huangjinxiu.top/page/3/index.html">
+  <meta name="description" content="如果shell脚本中使用的参数不超过9个，用$1-$9即可。当脚本程序的参数多于9个时，可以用shfit命令来使用序号大于9的参数。这个命令把命令行参数全体向左移一位。 123456#! &#x2F;bin&#x2F;bashecho &quot;前三个参数:$1 $2 $3&quot;shiftecho &quot;前三个参数:$1 $2 $3&quot;shiftecho &quot;前三个参数:$1 $2 $3&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell脚本参数超过9个时的处理">
+<meta property="og:url" content="http://blog.huangjinxiu.top/2020/06/06/shell%E8%84%9A%E6%9C%AC%E5%8F%82%E6%95%B0%E8%B6%85%E8%BF%879%E4%B8%AA%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Cherry-pellets的博客">
-<meta property="og:description" content="前端">
+<meta property="og:description" content="如果shell脚本中使用的参数不超过9个，用$1-$9即可。当脚本程序的参数多于9个时，可以用shfit命令来使用序号大于9的参数。这个命令把命令行参数全体向左移一位。 123456#! &#x2F;bin&#x2F;bashecho &quot;前三个参数:$1 $2 $3&quot;shiftecho &quot;前三个参数:$1 $2 $3&quot;shiftecho &quot;前三个参数:$1 $2 $3&quot;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200606100930534.png">
+<meta property="article:published_time" content="2020-06-06T02:11:35.000Z">
+<meta property="article:modified_time" content="2020-06-06T02:12:18.067Z">
 <meta property="article:author" content="Cherry-pellets">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="前端">
@@ -26,6 +29,7 @@
 <meta property="article:tag" content="html5">
 <meta property="article:tag" content="css3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200606100930534.png">
   
     <link rel="alternative" href="/atom.xml" title="Cherry-pellets的博客" type="application/atom+xml">
   
@@ -165,45 +169,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-vue1-0的-dispatch、events与vue2-0的-emit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-shell脚本参数超过9个时的处理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">vue1.0的$dispatch、events与vue2.0的$emit</a>
+    <h1 class="article-title" itemprop="name">
+      shell脚本参数超过9个时的处理
     </h1>
   
 
         
-        <a href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/" class="archive-article-date">
-  	<time datetime="2020-02-14T07:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-14</time>
+        <a href="/2020/06/06/shell%E8%84%9A%E6%9C%AC%E5%8F%82%E6%95%B0%E8%B6%85%E8%BF%879%E4%B8%AA%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-06-06T02:11:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#vue1.0的&#36;dispatch、events与vue2.0的&#36;emit"></a><br>vue2.0弃用了vue1.0中的$dispatch,选择用&#36;emit向父组件传递数据，例子：</p>
-<h4 id="vue2-0"><a href="#vue2-0" class="headerlink" title="vue2.0"></a>vue2.0</h4><p>子组件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ratingselect"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2)"</span>&gt;</span>&#123;&#123;desc.all&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"toggleContent"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    select(type) &#123;</span><br><span class="line">        <span class="comment">// more code</span></span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'ratingtype-select'</span>, type);</span><br><span class="line">        <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toggleContent() &#123;</span><br><span class="line">        <span class="comment">// more code</span></span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'content-toggle'</span>, <span class="keyword">this</span>.onlyContent);</span><br><span class="line">        <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>父组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;html</span><br><span class="line">&lt;ratingselect @ratingtype-select&#x3D;&quot;ratingtype_select&quot; </span><br><span class="line">			@content-toggle&#x3D;&quot;content_toggle&quot;&gt;&lt;&#x2F;ratingselect&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;javascript</span><br><span class="line">methods: &#123;</span><br><span class="line">	ratingtype_select(type) &#123;</span><br><span class="line">	   &#x2F;&#x2F; more code</span><br><span class="line">	&#125;,</span><br><span class="line">	content_toggle(onlyContent) &#123;</span><br><span class="line">	    &#x2F;&#x2F; more code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="vue1-0"><a href="#vue1-0" class="headerlink" title="vue1.0"></a>vue1.0</h4><p>子组件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ratingselect"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> @<span class="attr">click</span>=<span class="string">"select(2,$event)"</span>&gt;</span>&#123;&#123;desc.all&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"toggleContent($event)"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  select(type, event) &#123;</span><br><span class="line">      <span class="comment">// more code </span></span><br><span class="line">      <span class="keyword">this</span>.$dispatch(<span class="string">'ratingtype.select'</span>, type);</span><br><span class="line">      <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toggleContent(event) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">      <span class="keyword">this</span>.$dispatch(<span class="string">'content.toggle'</span>, <span class="keyword">this</span>.onlyContent);</span><br><span class="line">      <span class="comment">// 向父组件传递,参数1为自定义的事件名称，参数2为传递的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>父组件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ratingselect</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- more code--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ratingselect</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">events: &#123;</span><br><span class="line">   <span class="string">'ratingtype.select'</span>(type) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'content.toggle'</span>(onlyContent) &#123;</span><br><span class="line">      <span class="comment">// more code</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>综上所述，<br>在vue1.0中，子组件使用的是&#36;dispatch,父组件在events中接收子组件传递过来的事件和参数；<br>在vue2.0中，子组件使用的是&#36;emit,父组件直接在标签中用v-on(语法糖为@)来接收子组件传递过来的事件和参数</p>
+        <p>如果shell脚本中使用的参数不超过9个，用$1-$9即可。<br>当脚本程序的参数多于9个时，可以用shfit命令来使用序号大于9的参数。这个命令把命令行参数全体向左移一位。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line">echo "前三个参数:$1 $2 $3"</span><br><span class="line">shift</span><br><span class="line">echo "前三个参数:$1 $2 $3"</span><br><span class="line">shift</span><br><span class="line">echo "前三个参数:$1 $2 $3"</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200606100930534.png" alt="在这里插入图片描述"></p>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -212,16 +224,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/14/vue1-0%E7%9A%84-dispatch%E3%80%81events%E4%B8%8Evue2-0%E7%9A%84-emit/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://blog.huangjinxiu.top/2020/06/06/shell%E8%84%9A%E6%9C%AC%E5%8F%82%E6%95%B0%E8%B6%85%E8%BF%879%E4%B8%AA%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/02/%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实现图片懒加载</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -241,286 +312,14 @@
 
 
 
-
-  
-    <article id="post-transition在vue1-0和vue2-0中的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">transition在vue1.0和vue2.0中的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-02-12T13:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="#transition在vue1.0和vue2.0中的区别"></a></p>
-<h3 id="1-html部分："><a href="#1-html部分：" class="headerlink" title="1. html部分："></a>1. html部分：</h3><h5 id="vue1-0"><a href="#vue1-0" class="headerlink" title="vue1.0"></a>vue1.0</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span> <span class="attr">transition</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="vue2-0"><a href="#vue2-0" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fold"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shopcart-list"</span> <span class="attr">v-show</span>=<span class="string">"listShow"</span>&gt;</span></span><br><span class="line">     	<span class="comment">&lt;!--more code--&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-css部分"><a href="#2-css部分" class="headerlink" title="2. css部分"></a>2. css部分</h3><h4 id="vue1-0-1"><a href="#vue1-0-1" class="headerlink" title="vue1.0"></a>vue1.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span>: <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      &amp;<span class="selector-class">.fold-transition</span></span><br><span class="line">        <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span>, &amp;<span class="selector-class">.fold-leave</span></span><br><span class="line">        <span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
-<h4 id="vue2-0-1"><a href="#vue2-0-1" class="headerlink" title="vue2.0"></a>vue2.0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.shopcart-list</span></span><br><span class="line">      <span class="selector-tag">position</span> <span class="selector-tag">absolute</span></span><br><span class="line">      <span class="selector-tag">top</span>: 0</span><br><span class="line">      <span class="selector-tag">left</span>: 0</span><br><span class="line">      <span class="selector-tag">z-index</span> <span class="selector-tag">-1</span></span><br><span class="line">      <span class="selector-tag">width</span>: 100%</span><br><span class="line">      // transition all 0.5s</span><br><span class="line">      <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, <span class="selector-tag">-100</span>%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter-active</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-active</span></span><br><span class="line">        <span class="selector-tag">transition</span> <span class="selector-tag">all</span> 0<span class="selector-class">.5s</span></span><br><span class="line">        // transform translate3d(0, -100%, 0)</span><br><span class="line"></span><br><span class="line">      &amp;<span class="selector-class">.fold-enter</span></span><br><span class="line">      &amp;<span class="selector-class">.fold-leave-to</span></span><br><span class="line">        <span class="selector-tag">transform</span> <span class="selector-tag">translate3d</span>(0, 0, 0)</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/12/transition%E5%9C%A8vue1-0%E5%92%8Cvue2-0%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue2中使用better-scroll插件实现滚动效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">vue2中使用better-scroll插件实现滚动效果</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/" class="archive-article-date">
-  	<time datetime="2020-02-10T09:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="#vue2中使用better-scroll实现滚动效果"></a></p>
-<h4 id="1-npm安装插件"><a href="#1-npm安装插件" class="headerlink" title="1.npm安装插件"></a>1.npm安装插件</h4><p>(1)<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="noopener">到github上查看最新版本号</a><br>(2)在package.json中添加依赖<br><img src="https://img-blog.csdnimg.cn/20200210160243969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）执行<code>npm install</code>安装，安装成功后node_module目录下生成了better-scroll文件夹<br><img src="https://img-blog.csdnimg.cn/20200210165755185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-使用插件"><a href="#2-使用插件" class="headerlink" title="2.使用插件"></a>2.使用插件</h4><p>（1）在需要实现滚动效果的组件中引入插件<br><code>import BScroll from &#39;better-scroll&#39;;</code><br>（2）标记元素<br>使用ref属性来标记需要实现滚动效果的元素，然后在js中通过this.$refs获取该元素<br><img src="https://img-blog.csdnimg.cn/20200210165606153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（3）绑定dom<br><img src="https://img-blog.csdnimg.cn/20200210165643704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/10/vue2%E4%B8%AD%E4%BD%BF%E7%94%A8better-scroll%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-使用vue-resource" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">vue:使用vue-resource</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/" class="archive-article-date">
-  	<time datetime="2020-02-06T06:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="#vue:使用vue-resource"></a></p>
-<h4 id="1-在package-json中添加依赖"><a href="#1-在package-json中添加依赖" class="headerlink" title="1. 在package.json中添加依赖"></a>1. 在package.json中添加依赖</h4><p>如图，后面的版本号根据自己喜欢的来写。<br><img src="https://img-blog.csdnimg.cn/20200206144039119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h4><p>执行<code>npm install</code>安装，完成后node_modules目录下生成了vue-resource文件夹<br><img src="https://img-blog.csdnimg.cn/20200206144321828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="3-导入插件并注册"><a href="#3-导入插件并注册" class="headerlink" title="3.导入插件并注册"></a>3.导入插件并注册</h4><p>将vue-resource导入到main.js中并全局注册<br><img src="https://img-blog.csdnimg.cn/2020020614442897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="4-发送请求"><a href="#4-发送请求" class="headerlink" title="4.发送请求"></a>4.发送请求</h4><p>这里要提前准备好接收请求的接口或者mock数据<br><img src="https://img-blog.csdnimg.cn/20200206144714186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/vue-%E4%BD%BF%E7%94%A8vue-resource/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue2-安装、配置、使用前端路由vue-router" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">vue2:安装、配置、使用前端路由vue-router</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/" class="archive-article-date">
-  	<time datetime="2020-02-05T10:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="vue2:安装、配置、使用前端路由vue-router"></a></p>
-<h4 id="1-查看是否已安装vue-router"><a href="#1-查看是否已安装vue-router" class="headerlink" title="1.查看是否已安装vue-router"></a>1.查看是否已安装vue-router</h4><p>首先查看package.json文件中是否已经添加了vue-router依赖：<br><img src="https://img-blog.csdnimg.cn/20200205175021886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再查看node_modules文件夹下是否有vue-router文件夹<br><img src="https://img-blog.csdnimg.cn/20200205181828319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果有以上文件，则说明已经安装了vue-router。<br>一般在搭建项目时会出现是否安装vue-router这一个选项：<br><img src="https://img-blog.csdnimg.cn/20200205180054478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果选了yes，项目搭建时就会安装vue-router。<br>如果package.json中没有这句代码或者没有vue-router文件夹，则自己在packsge.json中添加一句代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;vue-router&quot;: &quot;^3.0.1&quot;</span><br></pre></td></tr></table></figure>
-<p>(后面的”^3.0.1”为版本号，可以自己去官网或者github上查看最新稳定版的版本号)，添加完以后执行 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>再去查看node_modules文件夹下是否有vue-router文件夹，如果有，则完成安装。</p>
-<h4 id="2-添加组件"><a href="#2-添加组件" class="headerlink" title="2.添加组件"></a>2.添加组件</h4><p>添加所需的组件<br><img src="https://img-blog.csdnimg.cn/20200205180626552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="3-修改index-js"><a href="#3-修改index-js" class="headerlink" title="3.修改index.js"></a>3.修改index.js</h4><p>首先导入上面创建的组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import goods from &#39;..&#x2F;components&#x2F;goods&#x2F;goods&#39;;</span><br><span class="line">import seller from &#39;..&#x2F;components&#x2F;seller&#x2F;seller&#39;;</span><br><span class="line">import ratings from &#39;..&#x2F;components&#x2F;ratings&#x2F;ratings&#39;;</span><br></pre></td></tr></table></figure>
-<p>然后配置导入的组件作为路由：{第一个{}及其内容不是必需的，只是为了设置一个默认显示的路由}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;goods&#39;,</span><br><span class="line">      name: &#39;goods&#39;,</span><br><span class="line">      component: goods</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;seller&#39;,</span><br><span class="line">      name: &#39;seller&#39;,</span><br><span class="line">      component: seller</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;ratings&#39;,</span><br><span class="line">      name: &#39;ratings&#39;,</span><br><span class="line">      component: ratings</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如图：<br><img src="https://img-blog.csdnimg.cn/20200205181316966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="4-使用路由"><a href="#4-使用路由" class="headerlink" title="4.使用路由"></a>4.使用路由</h4><p>首先在main.js中引入刚才配置好的路由<br><img src="https://img-blog.csdnimg.cn/20200205182609344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后在app.vue中添加路由，这里的router-link标签中to属性的值要与index.js中path的值对应<br><img src="https://img-blog.csdnimg.cn/20200205182747991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="5-效果"><a href="#5-效果" class="headerlink" title="5.效果"></a>5.效果</h4><p>点击商品：<br><img src="https://img-blog.csdnimg.cn/20200205183201929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击评论<br><img src="https://img-blog.csdnimg.cn/20200205183218229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/05/vue2-%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1vue-router/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -544,8 +343,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
