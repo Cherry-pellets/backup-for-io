@@ -147,6 +147,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue2-0使用keep-alive实现页面缓存" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">vue2.0使用keep-alive实现页面缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/" class="archive-article-date">
+  	<time datetime="2020-02-16T07:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#vue2.0使用keep-alive实现页面缓存"></a></p>
+<h4 id="1-所有页面都缓存"><a href="#1-所有页面都缓存" class="headerlink" title="1. 所有页面都缓存"></a>1. 所有页面都缓存</h4><p>只需要在用到router-view的地方多加一个<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>标签即可<br><img src="https://img-blog.csdnimg.cn/20200216154410233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="2-缓存部分页面"><a href="#2-缓存部分页面" class="headerlink" title="2. 缓存部分页面"></a>2. 缓存部分页面</h4><p>（1）修改路由配置,需要缓存的（即切换页面后数据仍保留的）路由的keepAlive属性设置为true,不需要缓存的设置为false或者不设置（因为默认是false），如图：<br><img src="https://img-blog.csdnimg.cn/20200216154549264.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）修改引用路由的地方<img src="https://img-blog.csdnimg.cn/20200216154741669.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjUwOTc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/16/vue2-0%E4%BD%BF%E7%94%A8keep-alive%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue1-0的-dispatch、events与vue2-0的-emit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -585,6 +650,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy, Reflect, 双向数据绑定</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

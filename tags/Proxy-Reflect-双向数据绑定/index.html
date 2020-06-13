@@ -7,17 +7,15 @@
   <meta name="baidu-site-verification" content="74KxFPX3Fh" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.huangjinxiu.top">
-  <title>数值转换：parseInt、parseFloat、Number的用法和区别 | Cherry-pellets的博客</title>
+  <title>Tag: Proxy, Reflect, 双向数据绑定 | Cherry-pellets的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.Number（）Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。Number()的转换规则： num 123456若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0若x为null:num&#x3D;0；若x为undefined:num&#x3D;NaN;若x为数值，直接返回；若x为字符串">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数值转换：parseInt、parseFloat、Number的用法和区别">
-<meta property="og:url" content="http://blog.huangjinxiu.top/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/index.html">
+  <meta name="description" content="前端">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cherry-pellets的博客">
+<meta property="og:url" content="http://blog.huangjinxiu.top/tags/Proxy-Reflect-%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/index.html">
 <meta property="og:site_name" content="Cherry-pellets的博客">
-<meta property="og:description" content="1.Number（）Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。Number()的转换规则： num 123456若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0若x为null:num&#x3D;0；若x为undefined:num&#x3D;NaN;若x为数值，直接返回；若x为字符串">
+<meta property="og:description" content="前端">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-16T14:13:13.000Z">
-<meta property="article:modified_time" content="2020-06-13T13:39:46.611Z">
 <meta property="article:author" content="Cherry-pellets">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="前端">
@@ -147,171 +145,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数值转换：parseInt、parseFloat、Number的用法和区别" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      数值转换：parseInt、parseFloat、Number的用法和区别
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/06/13/%E4%BD%BF%E7%94%A8Proxy%E5%92%8CReflect%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" class="archive-article-date">
+  	<time datetime="2020-06-13T13:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/06/13/%E4%BD%BF%E7%94%A8Proxy%E5%92%8CReflect%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">使用Proxy和Reflect实现简单的双向数据绑定</a>
     </h1>
   
 
-        
-        <a href="/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-04-16T14:13:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Number（）"><a href="#1-Number（）" class="headerlink" title="1.Number（）"></a>1.Number（）</h5><p>Number()函数可以用于任何数据类型，而parseInt和parseInt专门用于把字符串转换成数值。<br>Number()的转换规则：</p>
-<figure class="highlight plain"><figcaption><span>num </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">若x为Boolea类型：当x为true,num&#x3D;1;当x为false，num&#x3D;0</span><br><span class="line">若x为null:num&#x3D;0；</span><br><span class="line">若x为undefined:num&#x3D;NaN;</span><br><span class="line">若x为数值，直接返回；</span><br><span class="line">若x为字符串：</span><br><span class="line">			（1）字符串中只包含数字（或前面带负号）：忽略前导0（如果有的话）返回，如&#96;&#96;&#96;let num &#x3D; Number(&quot;0012&quot;); &#x2F;&#x2F; num &#x3D; 12</span><br></pre></td></tr></table></figure>
-<pre><code>（2）字符串中包含有效的浮点数：忽略前导0（如果有的话）返回浮点数，如```let num = Number(&quot;001.23&quot;); // num = 1.23```
-（3）字符串为空，即x=&quot;&quot;：num=0
-（4）字符串包含十六进制格式：转换为相同大小的十进制数，如```let num = Number(&quot;0xA&quot;); // num = 10```
-（5）其他情况：num = NaN            </code></pre><h5 id="2-parseInt"><a href="#2-parseInt" class="headerlink" title="2.parseInt()"></a>2.parseInt()</h5><p>parseInt()专门用于把字符串转换成数值。<br>用法1：<code>let num = parseInt(x);</code><br>在进行转换时首先找到x中第一个非空格字符（也就是会忽略字符串中前面的空格，如<code>x = &quot;    123e&quot;</code>），如果第一个字符不是数字或者负号，num = NaN;只有一个参数的parseInt不识别八进制数，除非用用法2。<br>用法2：<code>let num = parseInt(&quot;0xAF&quot;,16)  // num = 175</code>第二个参数代表16进制</p>
-<h5 id="3-parseFloat"><a href="#3-parseFloat" class="headerlink" title="3.parseFloat()"></a>3.parseFloat()</h5><p>parseFloat与parseInt类似，专门用于把字符串转换成浮点数值。<br>注意点：<br>（1）如果字符串中有多个小数点，只有第一个有效，其他的被忽略，如<code>let num = parseFloat(&quot;1.1314.520&quot;); // num = 1.1314</code><br>（2）parseFloat只解析十进制数，十六进制格式会被转换成0，如<code>let num = parseFloat(&quot;0xA&quot;); // num = 0</code><br>（3）如果字符串包含的是可解析的整数，函数会返回整数，没有小数点，如<code>let num = parseFloat(&quot;13432key&quot;); // num = 13432</code></p>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Proxy, Reflect, 双向数据绑定</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
+          
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://blog.huangjinxiu.top/2020/04/16/%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%EF%BC%9AparseInt%E3%80%81parseFloat%E3%80%81Number%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/04/21/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8Areplace%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          前端面试题：正则表达式以及replace的使用
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/03/28/Linux-make-makefile%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux make/makefile的使用</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -335,9 +222,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
